@@ -1,49 +1,74 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGISTICS NEXT | 日本の物流の今を若い世代へ伝える。</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="students.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link class="font-awesome" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link class="font-awesome" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&display=swap');
-        body { font-family: 'Noto Sans JP', sans-serif; }
-        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
         :root {
             --waseda-navy: #002D5B;
             --accent-red: #9E1B32;
         }
+
         .bg-grid-pattern {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(0, 45, 91, 0.015) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 45, 91, 0.015) 1px, transparent 1px);
+                linear-gradient(to bottom, rgba(0, 45, 91, 0.015) 1px, transparent 1px);
         }
-        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+
+        .text-shadow {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
         html {
             scroll-behavior: smooth;
         }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen">
 
     <!-- Ambient glowing backgrounds -->
-    <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
-    <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
+    <div
+        class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block">
+    </div>
+    <div
+        class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block">
+    </div>
 
     <nav class="bg-[#002D5B] text-white sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="w-full px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex flex-col md:flex-row items-center md:space-x-3 text-center md:text-left">
-                <a href="index.html" class="font-poppins text-2xl font-bold tracking-wider">LOGISTICS <span class="text-[#9E1B32]">NEXT</span></a>
-                <span class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700 font-medium">〜早稲田大学 蓮池研究室有志による物流情報発信〜</span>
+                <a href="index.html" class="font-poppins text-2xl font-bold tracking-wider">LOGISTICS <span
+                        class="text-[#9E1B32]">NEXT</span></a>
+
             </div>
-            <div class="flex space-x-6 text-sm font-medium">
-                <a href="index.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">TOP</a>
-                <a href="archive.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">取材記事</a>
-                <a href="profile.html" class="pb-1 border-b-2 transition-all text-white border-[#9E1B32] font-bold">運営・研究室</a>
-                <a href="contact.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">お問い合わせ</a>
+            <div class="flex space-x-6 text-base font-medium md:mr-12 lg:mr-24 xl:mr-32">
+                <a href="index.html"
+                    class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">TOP</a>
+                <a href="archive.html"
+                    class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">取材記事</a>
+                <a href="profile.html"
+                    class="pb-1 border-b-2 transition-all text-white border-[#9E1B32] font-bold">運営・研究室</a>
+                <a href="contact.html"
+                    class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">お問い合わせ</a>
             </div>
         </div>
     </nav>
@@ -59,23 +84,36 @@
                 <div class="border-l-4 border-[#002D5B] pl-3">
                     <h3 class="text-lg font-bold text-[#002D5B]">プロジェクト概要</h3>
                 </div>
-                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-16 h-16 bg-[#002D5B] text-white rounded-full flex items-center justify-center text-xl font-bold font-poppins shrink-0 shadow-inner">W</div>
+                        <div
+                            class="w-16 h-16 bg-[#002D5B] text-white rounded-full flex items-center justify-center text-xl font-bold font-poppins shrink-0 shadow-inner">
+                            W</div>
                         <div>
                             <h4 class="text-lg font-bold text-slate-900">蓮池研究室 物流情報発信プロジェクト</h4>
-                            <p class="text-xs text-[#9E1B32] font-semibold font-poppins">Logistics Research Lab Project</p>
+                            <p class="text-xs text-[#9E1B32] font-semibold font-poppins">Logistics Research Lab Project
+                            </p>
                         </div>
                     </div>
                     <div class="text-slate-600 text-sm leading-relaxed space-y-4">
-                        <p>私たちは、早稲田大学・蓮池研究室で数理最適化やシミュレーションを用いて物流研究を行っているメンバーと、共同研究先である鉄鋼系運送会社（メタル便）の有志メンバーで構成されています。日本の物流業界の発展のため、物流現場の実態を広く社会に発信することを目的に、研究室および連携会社公認の自主プロジェクトとして活動しています。</p>
+                        <p>私たちは、早稲田大学・蓮池研究室で数理最適化やシミュレーションを用いて物流研究を行っているメンバーと、共同研究先である鉄鋼系運送会社（メタル便）の有志メンバーで構成されています。日本の物流業界の発展のため、物流現場の実態を広く社会に発信することを目的に、研究室および連携会社公認の自主プロジェクトとして活動しています。
+                        </p>
                         <p>単に研究室に籠もるだけでなく、現場調査（フィールドワーク）を通じて実社会の物流効率化・2024年問題をはじめとする社会的課題にコミットすることを目指しています。</p>
                         <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-4">
-                            <a href="https://hasuikelab.w.waseda.jp/" target="_blank" class="inline-flex items-center space-x-1 text-xs text-[#002D5B] font-bold hover:text-[#9E1B32] hover:underline transition-colors">
-                                <span>蓮池研究室 公式サイト</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            <a href="https://hasuikelab.w.waseda.jp/" target="_blank"
+                                class="inline-flex items-center space-x-1 text-xs text-[#002D5B] font-bold hover:text-[#9E1B32] hover:underline transition-colors">
+                                <span>蓮池研究室 公式サイト</span> <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                             </a>
-                            <a href="https://www.metalbin.net/" target="_blank" class="inline-flex items-center space-x-1 text-xs text-[#9E1B32] font-bold hover:text-[#002D5B] hover:underline transition-colors">
-                                <span>メタル便 公式サイト</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            <a href="https://www.metalbin.net/" target="_blank"
+                                class="inline-flex items-center space-x-1 text-xs text-[#9E1B32] font-bold hover:text-[#002D5B] hover:underline transition-colors">
+                                <span>メタル便 公式サイト</span> <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                            <a href="prospectus.pdf" target="_blank"
+                                class="inline-flex items-center space-x-1 text-xs text-slate-700 font-bold hover:text-[#002D5B] hover:underline transition-colors">
+                                <i class="fa-regular fa-file-pdf text-[11px]"></i> <span>プロジェクト趣意書 (PDF)</span>
                             </a>
                         </div>
                     </div>
@@ -87,28 +125,33 @@
                 <div class="border-l-4 border-[#9E1B32] pl-3">
                     <h3 class="text-xl font-bold text-[#002D5B] tracking-wider">アドバイザー</h3>
                 </div>
-                
+
                 <!-- 梶大吉氏カード (活動学生のフォーマットに倣って詳細化) -->
-                <div class="max-w-3xl bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                    data-aos="fade-up" data-aos-delay="200">
                     <div>
                         <div class="flex items-center space-x-4 mb-6">
-                            <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
+                            <div
+                                class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
                                 <img src="Kaji.jpg" alt="梶 大吉" class="w-full h-full object-cover object-center">
                             </div>
                             <div>
                                 <h4 class="text-lg font-bold text-slate-900">梶 大吉</h4>
-                                <p class="text-xs text-[#002D5B] font-semibold font-poppins">1979年慶應義塾大学商学部卒/総合トラック（株）代表取締役/（株）メタル便代表取締役</p>
+                                <p class="text-xs text-[#002D5B] font-semibold font-poppins">
+                                    1979年慶應義塾大学商学部卒/総合トラック（株）代表取締役/（株）メタル便代表取締役</p>
                             </div>
                         </div>
                         <div class="text-slate-600 text-sm leading-relaxed space-y-3">
                             <p>1979年に慶応義塾大学商学部を卒業後、運送事業に携わり、総合トラック株式会社および株式会社メタル便の代表取締役に就任。</p>
-                            <p>2000年には日本初となる鋼材の混載ビジネスを「メタル便」として千葉県浦安市にて立ち上げました。現在は全国の物流会社8社のネットワークにより、長尺・異形状貨物の全国への混載輸送を展開しています。</p>
+                            <p>2000年には日本初となる鋼材の混載ビジネスを「メタル便」として千葉県浦安市にて立ち上げました。現在は全国の物流会社8社のネットワークにより、長尺・異形状貨物の全国への混載輸送を展開しています。
+                            </p>
                             <p>2016年にはメタル便グループとして、事業継続（BCP）における優れた取り組みが評価され、「BCAOアワード特別賞」および「最優秀実践賞」をダブル受賞しました。</p>
                             <p>2021年、自身の病気療養を機に経営執行を次世代へ委譲。現在は、物流業界の発展と次世代の人材育成、さらには産学連携活動の推進に注力しています。</p>
                         </div>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
-                        <strong class="text-slate-800 block mb-2"><i class="fa-solid fa-briefcase mr-1 text-[#9E1B32]"></i>主な経歴・役職・共同研究：</strong>
+                        <strong class="text-slate-800 block mb-2"><i
+                                class="fa-solid fa-briefcase mr-1 text-[#9E1B32]"></i>主な経歴・役職・共同研究：</strong>
                         <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
                             <li>総合トラック株式会社 代表取締役</li>
                             <li>株式会社メタル便 代表取締役</li>
@@ -124,91 +167,40 @@
                 <div class="border-l-4 border-[#002D5B] pl-3">
                     <h3 class="text-xl font-bold text-[#002D5B] tracking-wider">活動学生</h3>
                 </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- 長野恵治氏カード -->
-                    <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
-                        <div>
-                            <div class="flex items-center space-x-4 mb-6">
-                                <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Keiji.jpeg" alt="長野 恵治" class="w-full h-full object-cover object-center">
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-bold text-slate-900">長野 恵治</h4>
-                                    <p class="text-xs text-[#002D5B] font-semibold font-poppins">早稲田大学院　創造理工学研究科　経営システム工学専攻　修士2年</p>
-                                </div>
-                            </div>
-                            <div class="text-slate-600 text-sm leading-relaxed space-y-3">
-                                <p>学部生時代はスポーツメディアの運営に携わり、大学ラグビー部への現地取材や試合記事執筆、プロジェクト管理などの発信活動を精力的に行ってきました。</p>
-                                <p>研究活動では、物流の「2024年問題」をきっかけに日本のサプライチェーンに興味を抱き、卒業研究では卸売市場での現地調査（フィールドワーク）を行い、プログラミングを用いた荷待ち時間削減のシミュレーションを構築し、国際学会での発表を経験。現在は大学院にて、災害時の道路寸断リスクを考慮した強靭な「拠点配置計画」の数理最適化モデルを研究しています。</p>
-                                <p>本プロジェクトを通じて、今後も物流に携わる身として、実務家の方々の視点や意見から学びを得て、物流業界に影響を与えることができる人材を目指しています。</p>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
-                            <strong class="text-slate-800 block mb-2"><i class="fa-solid fa-magnifying-glass-chart mr-1 text-[#9E1B32]"></i>主な研究関心：</strong>
-                            <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
-                                <li>学部研究：トラックの待機時間削減に向けた荷役・バース運用のシミュレーション</li>
-                                <li>災害時のルーティング最適化</li>
-                                <li>拠点最適化モデルの構築</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <!-- 安井佑夢氏カード -->
-                    <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
-                        <div>
-                            <div class="flex items-center space-x-4 mb-6">
-                                <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Yumu.jpeg" alt="安井 佑夢" class="w-full h-full object-cover object-center">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" x-data="{ students: studentsData }" x-init="$nextTick(() => { if (typeof AOS !== 'undefined') AOS.refresh(); })">
+                    <template x-for="(student, index) in students" :key="student.name">
+                        <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                            data-aos="fade-up" :data-aos-delay="(index + 3) * 100">
+                            <div>
+                                <div class="flex items-center space-x-4 mb-6">
+                                    <div
+                                        class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100 flex items-center justify-center text-2xl font-bold text-slate-400">
+                                        <img :src="student.image" :alt="student.name" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                        <span style="display:none;" x-text="student.name.charAt(0)"></span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-slate-900" x-text="student.name"></h4>
+                                        <p class="text-xs text-[#002D5B] font-semibold font-poppins" x-text="student.role"></p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="text-lg font-bold text-slate-900">安井 佑夢</h4>
-                                    <p class="text-xs text-[#002D5B] font-semibold font-poppins">早稲田大学院　創造理工学研究科　経営システム工学専攻　修士2年</p>
-                                </div>
-                            </div>
-                            <div class="text-slate-600 text-sm leading-relaxed space-y-3">
-                                <p>学部生時代は理工展連絡会の財務局長兼会計として学園祭の運営に携わりました。</p>
-                                <p>研究活動では2024年問題に代表される物流課題の解決として移動販売に着目し、各地点の需要が不確実な配送計画問題ついて輸送コストと需要量充足のトレードオフを満たすモデルを提案し、国際学会で発表を行いました。修士では回収も含めた配送計画問題についての研究を行う予定です。</p>
-                                <p>本プロジェクトを通じて、社会人として重要となる視座や考え方を身につけたいと考えています。</p>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
-                            <strong class="text-slate-800 block mb-2"><i class="fa-solid fa-magnifying-glass-chart mr-1 text-[#9E1B32]"></i>主な研究関心：</strong>
-                            <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
-                                <li>学部研究：巡回セールスマン問題の新たな定式化の提案</li>
-                                <li>確率を用いた意思決定支援</li>
-                                <li>配送計画問題の最適化</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 井上聡太氏カード -->
-                    <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="500">
-                        <div>
-                            <div class="flex items-center space-x-4 mb-6">
-                                <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Sota.jpeg" alt="井上 聡太" class="w-full h-full object-cover object-center">
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-bold text-slate-900">井上 聡太</h4>
-                                    <p class="text-xs text-[#002D5B] font-semibold font-poppins">早稲田大学院　創造理工学研究科　経営システム工学専攻　修士1年</p>
+                                <div class="text-slate-600 text-sm leading-relaxed space-y-3">
+                                    <template x-for="(paragraph, i) in student.bio" :key="i">
+                                        <p x-text="paragraph"></p>
+                                    </template>
                                 </div>
                             </div>
-                            <div class="text-slate-600 text-sm leading-relaxed space-y-3">
-                                <p>学部生時代は、他学部にて計量経済学を学びました。その中で、社会全体を俯瞰するだけでなく、より現場に根差した視点から社会課題に向き合いたいと考え、大学院から経営システム工学を専攻しています。</p>
-                                <p>現在はエージェントベースモデルを用いた社会シミュレーションを学んでおり、京都市におけるオーバーツーリズム問題について研究を行う予定です。</p>
-                                <p>物流業界については、不安定な社会情勢や規制の強化により、数理的アプローチの必要性が高まっていると感じています。本プロジェクトでは、物流の現場から見える課題を学び、物流業界への理解と関心を深め、自身が提供できる価値について考えていきたいです。</p>
+                            <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
+                                <strong class="text-slate-800 block mb-2"><i
+                                        class="fa-solid fa-magnifying-glass-chart mr-1 text-[#9E1B32]"></i>主な研究関心：</strong>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
+                                    <template x-for="(interest, i) in student.interests" :key="i">
+                                        <li x-text="interest"></li>
+                                    </template>
+                                </ul>
                             </div>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
-                            <strong class="text-slate-800 block mb-2"><i class="fa-solid fa-magnifying-glass-chart mr-1 text-[#9E1B32]"></i>主な研究関心：</strong>
-                            <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
-                                <li>エージェントベースモデルを用いた社会シミュレーション</li>
-                                <li>京都市におけるオーバーツーリズム問題の分析</li>
-                                <li>物流課題に対する数理的アプローチ</li>
-                            </ul>
-                        </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </div>
@@ -225,7 +217,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -237,4 +229,5 @@
     </script>
 
 </body>
+
 </html>

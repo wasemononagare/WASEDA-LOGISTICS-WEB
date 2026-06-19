@@ -1,89 +1,119 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGISTICS NEXT | 日本の物流の今を若い世代へ伝える。</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link class="font-awesome" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link class="font-awesome" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&display=swap');
-        body { font-family: 'Noto Sans JP', sans-serif; }
-        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
         :root {
             --waseda-navy: #002D5B;
             --accent-red: #9E1B32;
         }
+
         .bg-grid-pattern {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(0, 45, 91, 0.015) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 45, 91, 0.015) 1px, transparent 1px);
+                linear-gradient(to bottom, rgba(0, 45, 91, 0.015) 1px, transparent 1px);
         }
-        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+
+        .text-shadow {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
         html {
             scroll-behavior: smooth;
         }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen">
 
     <!-- Ambient glowing backgrounds -->
-    <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
-    <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
+    <div
+        class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block">
+    </div>
+    <div
+        class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block">
+    </div>
 
     <nav class="bg-[#002D5B] text-white sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="w-full px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex flex-col md:flex-row items-center md:space-x-3 text-center md:text-left">
-                <a href="index.html" class="font-poppins text-2xl font-bold tracking-wider">LOGISTICS <span class="text-[#9E1B32]">NEXT</span></a>
-                <span class="text-[11px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700 font-medium">〜早稲田大学 蓮池研究室有志による物流情報発信〜</span>
+                <a href="index.html" class="font-poppins text-2xl font-bold tracking-wider">LOGISTICS <span
+                        class="text-[#9E1B32]">NEXT</span></a>
+
             </div>
-            <div class="flex space-x-6 text-sm font-medium">
-                <a href="index.html" class="pb-1 border-b-2 transition-all text-white border-[#9E1B32] font-bold">TOP</a>
-                <a href="archive.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">取材記事</a>
-                <a href="profile.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">運営・研究室</a>
-                <a href="contact.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">お問い合わせ</a>
+            <div class="flex space-x-6 text-base font-medium md:mr-12 lg:mr-24 xl:mr-32">
+                <a href="index.html"
+                    class="pb-1 border-b-2 transition-all text-white border-[#9E1B32] font-bold">TOP</a>
+                <a href="archive.html"
+                    class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">取材記事</a>
+                <a href="profile.html"
+                    class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">運営・研究室</a>
+                <a href="contact.html"
+                    class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">お問い合わせ</a>
             </div>
         </div>
     </nav>
 
     <!-- ① ディスプレイの高さに完全自動調整する全画面ヒーローセクション -->
-    <div class="relative w-full h-[calc(100vh-72px)] md:h-[calc(100vh-76px)] min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden" data-aos="fade-in">
-        
+    <div class="relative w-full h-[calc(100vh-72px)] md:h-[calc(100vh-76px)] min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden"
+        data-aos="fade-in">
+
         <!-- ② 背景動画を埋め込むための箱（videoタグ） -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-35">
             <source src="truckship.mp4" type="video/mp4">
             <!-- 代替用背景画像 -->
             <img src="image_c890cb.jpg" alt="Logistics Truck" class="w-full h-full object-cover">
         </video>
-        
+
         <!-- 紺色グラデーションマスク -->
         <div class="absolute inset-0 bg-gradient-to-b from-[#002D5B]/70 via-[#002D5B]/40 to-[#002D5B]/70"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center h-full text-white">
+
+        <div
+            class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center h-full text-white">
             <!-- キャッチコピー（日本の物流の今を若い世代へ伝える。/ フォントサイズ自動調整） -->
-            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight max-w-5xl mx-auto">
-                日本の物流の今を<br>若い世代へ伝える。
+            <h1
+                class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight w-full mx-auto">
+                物流の今を若い世代へ
             </h1>
             <!-- 説明文の改行位置と自然な折り返しの修正 -->
-            <p class="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed mb-10 max-w-2xl mx-auto px-4">
-                物流の最前線で挑戦し続ける方々の意思決定や経験をインタビューし、その知見を記録・発信するプロジェクト。学生が主体となって取材し、学び、未来の物流を共に考えていきます。
+            <p class="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed mb-10 max-w-4xl mx-auto px-4">
+                <span class="inline-block">物流の最前線で挑戦し続ける方々の</span><span class="inline-block">意思決定や経験をインタビューし、</span><span class="inline-block">その知見を記録・発信するプロジェクト。</span><br class="hidden lg:block"><span class="inline-block">学生が主体となって取材し、</span><span class="inline-block">学び、</span><span class="inline-block">未来の物流を共に考えていきます。</span>
             </p>
             <div class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full max-w-md sm:max-w-none">
-                <a href="archive.html" class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-[#9E1B32] hover:bg-[#b0223b] text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(158,27,50,0.4)] hover:shadow-[0_8px_30px_rgba(158,27,50,0.6)] transform hover:-translate-y-0.5 text-sm md:text-base">
-                    <span>取材記事を読む</span> 
+                <a href="archive.html"
+                    class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-[#9E1B32] hover:bg-[#b0223b] text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(158,27,50,0.4)] hover:shadow-[0_8px_30px_rgba(158,27,50,0.6)] transform hover:-translate-y-0.5 text-sm md:text-base">
+                    <span>取材記事を読む</span>
                     <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                 </a>
-                <a href="#features" class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 text-sm md:text-base">
+                <a href="#features"
+                    class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 text-sm md:text-base">
                     <span>詳細を見る</span>
                     <i class="fa-solid fa-chevron-down transition-transform group-hover:translate-y-1"></i>
                 </a>
             </div>
         </div>
-        
+
         <!-- スクロールインジケーター -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce">
+        <div
+            class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce">
             <span class="text-[9px] uppercase tracking-widest text-slate-400">Scroll Down</span>
             <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
         </div>
@@ -91,45 +121,60 @@
 
     <!-- メインコンテンツコンテナ (画面幅にフィットするように最大幅を max-w-7xl に拡張) -->
     <main id="features" class="max-w-7xl mx-auto px-6 lg:px-8 py-16 space-y-16 relative z-10">
-        
+
         <!-- ③ 特徴カード（3カラム横並び、幅広対応、境界線明確化） -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up">
             <!-- Card 1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+            <div
+                class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4 shrink-0">
-                        <div class="w-12 h-12 rounded-xl bg-[#9E1B32]/10 flex items-center justify-center text-[#9E1B32] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-[#9E1B32]/10 flex items-center justify-center text-[#9E1B32] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
                             <i class="fa-solid fa-microphone-lines"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">現場のリアルを届ける。</h3>
+                        <h3
+                            class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">
+                            現場のリアルを届ける。</h3>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">教科書的な知識に留まらず、企業の物流担当者が実際に直面している課題や、泥臭い現場のリアルな状況をインタビューします。</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        教科書的な知識に留まらず、企業の物流担当者が実際に直面している課題や、泥臭い現場のリアルな状況をインタビューします。</p>
                 </div>
             </div>
-            
+
             <!-- Card 2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+            <div
+                class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4 shrink-0">
-                        <div class="w-12 h-12 rounded-xl bg-[#002D5B]/10 flex items-center justify-center text-[#002D5B] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-[#002D5B]/10 flex items-center justify-center text-[#002D5B] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">学術的な視点で物流を見る。</h3>
+                        <h3
+                            class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">
+                            学術的な視点で物流を見る。</h3>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">早稲田大学での数理最適化やシミュレーション研究の知見を背景に、学術と現場のギャップを見ていきます。</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">早稲田大学での数理最適化やシミュレーション研究の知見を背景に、学術と現場のギャップを見ていきます。
+                    </p>
                 </div>
             </div>
-            
+
             <!-- Card 3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+            <div
+                class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-4 mb-4 shrink-0">
-                        <div class="w-12 h-12 rounded-xl bg-[#9E1B32]/10 flex items-center justify-center text-[#9E1B32] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-[#9E1B32]/10 flex items-center justify-center text-[#9E1B32] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
                             <i class="fa-solid fa-rocket"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">産学をつなぐ架け橋となる。</h3>
+                        <h3
+                            class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">
+                            産学をつなぐ架け橋となる。</h3>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">これからの物流業界を担う若い世代や研究者に向けて、最前線の企業の挑戦を発信し、物流への関心を集めて発展に貢献します。</p>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        これからの物流業界を担う若い世代や研究者に向けて、最前線の企業の挑戦を発信し、物流への関心を集めて発展に貢献します。</p>
                 </div>
             </div>
         </div>
@@ -140,7 +185,7 @@
                 <span class="w-1.5 h-6 bg-[#9E1B32] rounded-full"></span>
                 <h3 class="text-xl font-bold text-[#002D5B]">最新取材記事・ポッドキャスト</h3>
             </div>
-            
+
             <!-- ======================================================================= -->
             <!-- 【管理用コメント】 -->
             <!-- 記事を追加する場合は、以下のグリッド(div)の中にカード(aタグ)をコピーして追加・編集してください。 -->
@@ -148,18 +193,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <!-- 記事カードテンプレート (ここからコピー) -->
-                <a href="archive.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group">
-                    <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
-                        <div class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300"></div>
-                        <i class="fa-solid fa-ship text-5xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">飲料メーカー</span>
+                <a href="archive.html"
+                    class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group">
+                    <div
+                        class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300">
+                        </div>
+                        <i
+                            class="fa-solid fa-ship text-5xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span
+                            class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">飲料メーカー</span>
                     </div>
                     <div class="p-6">
                         <span class="text-[11px] text-slate-400 font-semibold block mb-2">2026.05.25</span>
-                        <h4 class="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-[#9E1B32] transition-colors leading-snug">
+                        <h4
+                            class="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-[#9E1B32] transition-colors leading-snug">
                             【取材】製造と物流の同期化が生む、サプライチェーン全体の最適化プロセス
                         </h4>
-                        <div class="mt-4 text-sm text-[#9E1B32] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        <div
+                            class="mt-4 text-sm text-[#9E1B32] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                             <span>詳しく読む</span> <i class="fa-solid fa-arrow-right text-[11px]"></i>
                         </div>
                     </div>
@@ -167,12 +220,15 @@
                 <!-- 記事カードテンプレート (ここまでコピー) -->
 
                 <!-- 予告/COMING SOONテンプレート -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden opacity-75 relative group">
+                <div
+                    class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden opacity-75 relative group">
                     <div class="h-48 bg-slate-100 relative flex items-center justify-center text-slate-300">
                         <i class="fa-solid fa-truck-ramp-box text-5xl text-slate-300"></i>
-                        <span class="absolute top-3 left-3 bg-slate-500 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">鉄鋼・重機</span>
+                        <span
+                            class="absolute top-3 left-3 bg-slate-500 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">鉄鋼・重機</span>
                         <div class="absolute inset-0 bg-white/20 backdrop-blur-[1px] flex items-center justify-center">
-                            <span class="bg-slate-900/70 text-white text-xs px-4 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-md">
+                            <span
+                                class="bg-slate-900/70 text-white text-xs px-4 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-md">
                                 <i class="fa-solid fa-lock text-[10px]"></i> 順次公開予定
                             </span>
                         </div>
@@ -200,7 +256,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -212,4 +268,5 @@
     </script>
 
 </body>
+
 </html>
