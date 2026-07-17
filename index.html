@@ -37,7 +37,10 @@
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
     <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
 
-    <nav class="bg-[#002D5B] text-white sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+    <nav x-data="{ scrolled: false }"
+         @scroll.window="scrolled = (window.pageYOffset > 50)"
+         :class="scrolled ? 'bg-[#002D5B]/95 shadow-md backdrop-blur-md border-transparent' : 'bg-transparent shadow-none border-b border-white/10'"
+         class="text-white fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b">
         <div class="w-full px-4 sm:px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex flex-col md:flex-row items-center md:space-x-3 text-center md:text-left">
                 <a href="index.html" class="flex items-center space-x-2.5 font-poppins text-2xl font-bold tracking-wider">
@@ -55,7 +58,7 @@
     </nav>
 
     <!-- ① ディスプレイの高さに完全自動調整する全画面ヒーローセクション -->
-    <div class="relative w-full h-[calc(100vh-72px)] md:h-[calc(100vh-76px)] min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden" data-aos="fade-in">
+    <div class="relative w-full h-screen min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden" data-aos="fade-in">
         
         <!-- ② 背景動画を埋め込むための箱（videoタグ） -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-35">
