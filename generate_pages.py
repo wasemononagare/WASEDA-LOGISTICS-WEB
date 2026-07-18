@@ -11,12 +11,25 @@ def get_header(active_page):
     if active_page != "contact":
         aos_css = '<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />'
         
+    nav_html = ""
+    if active_page == "top":
+        nav_html = f"""    <nav x-data="{{ scrolled: false }}"
+         @scroll.window="scrolled = (window.pageYOffset > 50)"
+         :class="scrolled ? 'bg-[#002D5B]/95 shadow-md backdrop-blur-md border-transparent' : 'bg-transparent shadow-none border-b border-white/10'"
+         class="text-white fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b">"""
+    else:
+        nav_html = f"""    <nav class="bg-[#002D5B] text-white sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">"""
+
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGISTICS NEXT | 日本物流の「知」と「経験」を次代へ継承する</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../images/favicon-192.png" sizes="192x192">
+    <title>LOGISTICS FRONTIER INTERVIEWS | 日本物流の「知」と「経験」を次代へ継承する</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link class="font-awesome" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -46,10 +59,16 @@ def get_header(active_page):
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
     <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
 
-    <nav class="bg-[#002D5B] text-white sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+    {nav_html}
         <div class="w-full px-4 sm:px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex flex-col md:flex-row items-center md:space-x-3 text-center md:text-left">
-                <a href="{FILE_TOP}" class="font-poppins text-2xl font-bold tracking-wider">LOGISTICS <span class="text-[#D12442]">NEXT</span></a>
+                <a href="{FILE_TOP}" class="flex items-center space-x-2.5 font-poppins text-lg sm:text-xl md:text-2xl font-bold tracking-wider">
+                    <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS" class="h-8 w-auto">
+                    <span class="flex flex-wrap items-center justify-center md:justify-start gap-x-2">
+                        <span class="inline-block whitespace-nowrap">LOGISTICS FRONTIER</span>
+                        <span class="text-[#D12442] inline-block whitespace-nowrap">INTERVIEWS</span>
+                    </span>
+                </a>
             </div>
             <div class="flex space-x-3 sm:space-x-6 text-xs sm:text-sm md:text-base font-medium md:mr-12 lg:mr-24 xl:mr-32">
                 <a href="{FILE_TOP}" class="pb-1 border-b-2 transition-all { 'text-white border-[#9E1B32] font-bold' if active_page == 'top' else 'border-transparent hover:text-slate-300' }">TOP</a>
@@ -80,11 +99,11 @@ def get_footer(active_page):
     <footer class="bg-slate-900 text-slate-400 text-[11px] py-6 border-t border-slate-800 mt-12 relative z-10">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
             <div class="text-center md:text-left">
-                <p class="font-poppins font-bold text-slate-300 text-xs tracking-wider">LOGISTICS NEXT</p>
+                <p class="font-poppins font-bold text-slate-300 text-xs tracking-wider">LOGISTICS FRONTIER INTERVIEWS</p>
                 <p class="mt-0.5 text-slate-500">Logistics Knowledge & Network Hub</p>
             </div>
             <div class="text-slate-500">
-                <p>&copy; 2026 LOGISTICS NEXT Project. All rights reserved.</p>
+                <p>&copy; 2026 LOGISTICS FRONTIER INTERVIEWS Project. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -95,27 +114,30 @@ def get_footer(active_page):
 
 top_content = f"""
     <!-- ① ディスプレイの高さに完全自動調整する全画面ヒーローセクション -->
-    <div class="relative w-full h-[calc(100vh-72px)] md:h-[calc(100vh-76px)] min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden" data-aos="fade-in">
+    <div class="relative w-full h-screen min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden" data-aos="fade-in">
         
         <!-- ② 背景動画を埋め込むための箱（videoタグ） -->
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-35">
-            <source src="truckship.mp4" type="video/mp4">
+            <source src="../videos/truckship.mp4" type="video/mp4">
             <!-- 代替用背景画像 -->
-            <img src="image_c890cb.jpg" alt="Logistics Truck" class="w-full h-full object-cover">
+            <img src="../images/image_c890cb.jpg" alt="Logistics Truck" class="w-full h-full object-cover">
         </video>
         
         <!-- 紺色グラデーションマスク -->
         <div class="absolute inset-0 bg-gradient-to-b from-[#002D5B]/70 via-[#002D5B]/40 to-[#002D5B]/70"></div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center h-full text-white">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-poppins font-bold leading-tight mb-4 tracking-wider w-full mx-auto">
-                LOGISTICS <span class="text-[#D12442] drop-shadow-[0_0_15px_rgba(209,36,66,0.4)]">NEXT</span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-poppins font-bold leading-tight mb-4 tracking-wider w-full mx-auto">
+                <span class="flex flex-wrap justify-center gap-x-4">
+                    <span class="inline-block whitespace-nowrap">LOGISTICS FRONTIER</span>
+                    <span class="text-[#D12442] drop-shadow-[0_0_15px_rgba(209,36,66,0.4)] inline-block whitespace-nowrap">INTERVIEWS</span>
+                </span>
             </h1>
             <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-8 tracking-tight w-full mx-auto text-slate-100">
                 <span class="inline-block">日本物流の</span><span class="inline-block">「知」と「経験」を</span><span class="inline-block">次代へ継承する</span>
             </p>
             <p class="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed mb-10 max-w-4xl mx-auto px-4">
-                <span class="inline-block">物流・サプライチェーンの最前線で</span><span class="inline-block">挑戦し続ける方々の</span><span class="inline-block">意思決定や経験をインタビューし、</span><span class="inline-block">その知見を記録・発信するプロジェクト。</span><br class="hidden lg:block"><span class="inline-block">学生が主体となって取材し、</span><span class="inline-block">学び、</span><span class="inline-block">未来の物流を共に考えていきます。</span>
+                <span class="inline-block">物流・サプライチェーン of 最前線で</span><span class="inline-block">挑戦し続ける方々の</span><span class="inline-block">意思決定や経験をインタビューし、</span><span class="inline-block">その知見を記録・発信するプロジェクト。</span><br class="hidden lg:block"><span class="inline-block">学生が主体となって取材し、</span><span class="inline-block">学び、</span><span class="inline-block">未来の物流を共に考えていきます。</span>
             </p>
             <div class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full max-w-md sm:max-w-none">
                 <a href="{FILE_ARCHIVE}" class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(209,36,66,0.4)] hover:shadow-[0_8px_30px_rgba(209,36,66,0.6)] transform hover:-translate-y-0.5 text-sm md:text-base">
@@ -321,14 +343,16 @@ profile_content = f"""
                 </div>
                 <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-16 h-16 bg-[#002D5B] text-white rounded-full flex items-center justify-center text-xl font-bold font-poppins shrink-0 shadow-inner">W</div>
+                        <div class="w-24 md:w-32 shrink-0 overflow-hidden rounded-xl border border-slate-200 shadow-sm bg-white p-1">
+                            <img src="../images/LOGO.jpg" alt="LOGISTICS FRONTIER INTERVIEWS" class="w-full h-auto object-contain">
+                        </div>
                         <div>
-                            <h4 class="text-lg font-bold text-slate-900">蓮池研究室 物流情報発信プロジェクト</h4>
-                            <p class="text-xs text-[#9E1B32] font-semibold font-poppins">Logistics Research Lab Project</p>
+                            <h4 class="text-lg font-bold text-slate-900">蓮池研究室 SC情報発信プロジェクト</h4>
+                            <p class="text-xs text-[#9E1B32] font-semibold font-poppins">Supply Chain Research Lab Project</p>
                         </div>
                     </div>
                     <div class="text-slate-600 text-sm leading-relaxed space-y-4">
-                        <p>私たちは、早稲田大学・蓮池研究室で数理最適化やシミュレーションを用いて物流研究を行っているメンバーと、共同研究先である鉄鋼系運送会社（メタル便）の有志メンバーで構成されています。日本の物流業界の発展のため、物流現場の実態を広く社会に発信することを目的に、研究室および連携会社公認の自主プロジェクトとして活動しています。</p>
+                        <p>私たちは、早稲田大学・蓮池研究室で数理最適化やシミュレーションを用いて物流研究を行っているメンバーと、共同研究先である鉄鋼系運送会社（メタル便）の有志メンバーで構成されています。本プロジェクトでは、日本物流の発展に向けて、<strong>SC（サプライチェーン：Supply Chain）</strong>の現場の実態や、最前線で物流を支えてきた先人たちの貴重な「知」と「経験」を後世（次代）へ継承・発信していくことを目的としています。この情報発信活動を通じて、学生自身にとっても実務的な知見や多様な視点を獲得し、深い学びを得るための自主プロジェクトとして活動しています。</p>
                         <p>単に研究室に籠もるだけでなく、現場調査（フィールドワーク）を通じて実社会の物流効率化・2024年問題をはじめとする社会的課題にコミットすることを目指しています。</p>
                         <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-4">
                             <a href="https://hasuikelab.w.waseda.jp/" target="_blank" class="inline-flex items-center space-x-1 text-xs text-[#002D5B] font-bold hover:text-[#9E1B32] hover:underline transition-colors">
@@ -348,12 +372,12 @@ profile_content = f"""
                     <h3 class="text-xl font-bold text-[#002D5B] tracking-wider">アドバイザー</h3>
                 </div>
                 
-                <!-- 梶大吉氏カード (活動学生のフォーマットに倣って詳細化) -->
+                <!-- 梶大吉氏カード -->
                 <div class="max-w-3xl bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
                     <div>
                         <div class="flex items-center space-x-4 mb-6">
                             <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                <img src="Kaji.jpg" alt="梶 大吉" class="w-full h-full object-cover object-center">
+                                <img src="../images/Kaji.jpg" alt="梶 大吉" class="w-full h-full object-cover object-center">
                             </div>
                             <div>
                                 <h4 class="text-lg font-bold text-slate-900">梶 大吉</h4>
@@ -379,7 +403,7 @@ profile_content = f"""
                 </div>
             </div>
 
-            <!-- ④ 活動学生 セクション (PCワイド表示時には2カラム横並びになるようにレスポンシブ配置) -->
+            <!-- ④ 活動学生 セクション -->
             <div class="space-y-4">
                 <div class="border-l-4 border-[#002D5B] pl-3">
                     <h3 class="text-xl font-bold text-[#002D5B] tracking-wider">活動学生</h3>
@@ -391,7 +415,7 @@ profile_content = f"""
                         <div>
                             <div class="flex items-center space-x-4 mb-6">
                                 <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Keiji.jpeg" alt="長野 恵治" class="w-full h-full object-cover object-center">
+                                    <img src="../images/Keiji.jpeg" alt="長野 恵治" class="w-full h-full object-cover object-center">
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold text-slate-900">長野 恵治</h4>
@@ -419,7 +443,7 @@ profile_content = f"""
                         <div>
                             <div class="flex items-center space-x-4 mb-6">
                                 <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Yumu.jpeg" alt="安井 佑夢" class="w-full h-full object-cover object-center">
+                                    <img src="../images/Yumu.jpeg" alt="安井 佑夢" class="w-full h-full object-cover object-center">
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold text-slate-900">安井 佑夢</h4>
@@ -447,7 +471,7 @@ profile_content = f"""
                         <div>
                             <div class="flex items-center space-x-4 mb-6">
                                 <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Sota.jpeg" alt="井上 聡太" class="w-full h-full object-cover object-center">
+                                    <img src="../images/Sota.jpeg" alt="井上 聡太" class="w-full h-full object-cover object-center">
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold text-slate-900">井上 聡太</h4>
@@ -475,7 +499,7 @@ profile_content = f"""
                         <div>
                             <div class="flex items-center space-x-4 mb-6">
                                 <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
-                                    <img src="Madoka.jpg" alt="上村 まどか" class="w-full h-full object-cover object-center">
+                                    <img src="../images/Madoka.jpg" alt="上村 まどか" class="w-full h-full object-cover object-center">
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold text-slate-900">上村 まどか</h4>
@@ -492,6 +516,33 @@ profile_content = f"""
                             <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
                                 <li>物流現場の課題分析</li>
                                 <li>システム工学の社会応用</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 谷口結氏カード -->
+                    <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] p-8 border border-slate-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="700">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="w-20 h-20 rounded-full shrink-0 shadow-sm border border-slate-200 overflow-hidden bg-slate-200 ring-4 ring-slate-100">
+                                    <img src="../images/yui.jpeg" alt="谷口 結" class="w-full h-full object-cover object-center">
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-slate-900">谷口 結</h4>
+                                    <p class="text-xs text-[#002D5B] font-semibold font-poppins">早稲田大学　創造理工学部　経営システム工学科　4年</p>
+                                </div>
+                            </div>
+                            <div class="text-slate-600 text-sm leading-relaxed space-y-3">
+                                <p>学部で物流システムや倉庫レイアウト設計について学ぶ中で、物流は企業活動を支える重要な社会基盤であり、多くの課題を抱える分野であることを実感しました。</p>
+                                <p>本活動を通じて、企業が直面する物流課題への理解を深めるとともに、多角的な視点と実践的な思考力を身につけ、課題解決に主体的に取り組める力を養いたいと考えています。</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
+                            <strong class="text-slate-800 block mb-2"><i class="fa-solid fa-magnifying-glass-chart mr-1 text-[#9E1B32]"></i>主な研究関心：</strong>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600 ml-1">
+                                <li>シミュレーションを用いた大規模施設の混雑緩和</li>
+                                <li>倉庫レイアウト設計・最適化</li>
+                                <li>物流システムの最適化</li>
                             </ul>
                         </div>
                     </div>
@@ -570,16 +621,19 @@ contact_content = f"""
     </main>
 """
 
-with open(FILE_TOP, "w", encoding="utf-8") as f:
+# Ensure the output directory exists
+os.makedirs("pages", exist_ok=True)
+
+with open(os.path.join("pages", FILE_TOP), "w", encoding="utf-8") as f:
     f.write(get_header("top") + top_content + get_footer("top"))
 
-with open(FILE_ARCHIVE, "w", encoding="utf-8") as f:
+with open(os.path.join("pages", FILE_ARCHIVE), "w", encoding="utf-8") as f:
     f.write(get_header("archive") + archive_content + get_footer("archive"))
 
-with open(FILE_PROFILE, "w", encoding="utf-8") as f:
+with open(os.path.join("pages", FILE_PROFILE), "w", encoding="utf-8") as f:
     f.write(get_header("profile") + profile_content + get_footer("profile"))
 
-with open(FILE_CONTACT, "w", encoding="utf-8") as f:
+with open(os.path.join("pages", FILE_CONTACT), "w", encoding="utf-8") as f:
     f.write(get_header("contact") + contact_content + get_footer("contact"))
 
 print("【大成功】キャッチコピーと文言の調整、および大学の公式主張制限に配慮した更新を行いました！")
