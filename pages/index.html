@@ -37,28 +37,41 @@
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
     <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
 
-        <nav x-data="{ scrolled: false }"
+    <header x-data="{ scrolled: false }"
          @scroll.window="scrolled = (window.pageYOffset > 50)"
-         :class="scrolled ? 'bg-[#002D5B]/95 shadow-md backdrop-blur-md border-transparent' : 'bg-transparent shadow-none border-b border-white/10'"
-         class="text-white fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b">
-        <div class="w-full px-4 sm:px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex flex-col md:flex-row items-center md:space-x-3 text-center md:text-left">
-                <a href="index.html" class="flex items-center space-x-2.5 font-poppins text-lg sm:text-xl md:text-2xl font-bold tracking-wider">
-                    <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS" class="h-8 w-auto">
-                    <span class="flex flex-wrap items-center justify-center md:justify-start gap-x-2">
-                        <span class="inline-block whitespace-nowrap">LOGISTICS FRONTIER</span>
-                        <span class="text-[#D12442] inline-block whitespace-nowrap">INTERVIEWS</span>
-                    </span>
+         :class="scrolled ? 'bg-white/95 shadow-md backdrop-blur-md py-2' : 'bg-white py-4'"
+         class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS" class="h-10 w-auto group-hover:opacity-80 transition-opacity">
+                <div class="flex flex-col">
+                    <span class="font-poppins text-lg md:text-xl font-bold tracking-wider text-[#002D5B] leading-tight">LOGISTICS FRONTIER</span>
+                    <span class="font-poppins text-xs md:text-sm font-bold tracking-wider text-[#D12442] leading-tight">INTERVIEWS</span>
+                </div>
+            </a>
+
+            <!-- Right Side (Navigation + Button) -->
+            <div class="hidden lg:flex items-center space-x-12">
+                <nav class="flex items-center space-x-8">
+                    <a href="index.html" class="text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-[#D12442]">TOP</a>
+                    <a href="archive.html" class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442]">取材記事</a>
+                    <a href="profile.html" class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442]">運営・研究室</a>
+                </nav>
+
+                <a href="contact.html" class="bg-[#002D5B] hover:bg-[#1a416b] text-white px-6 py-2.5 rounded-full font-bold text-sm transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                    <i class="fa-regular fa-envelope"></i> お問い合わせ
                 </a>
             </div>
-            <div class="flex space-x-3 sm:space-x-6 text-xs sm:text-sm md:text-base font-medium md:mr-12 lg:mr-24 xl:mr-32">
-                <a href="index.html" class="pb-1 border-b-2 transition-all text-white border-[#9E1B32] font-bold">TOP</a>
-                <a href="archive.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">取材記事</a>
-                <a href="profile.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">運営・研究室</a>
-                <a href="contact.html" class="pb-1 border-b-2 transition-all border-transparent hover:text-slate-300">お問い合わせ</a>
+
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden flex items-center">
+                <button class="text-slate-800 hover:text-[#002D5B] focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- ① ディスプレイの高さに完全自動調整する全画面ヒーローセクション -->
     <div class="relative w-full h-screen min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden" data-aos="fade-in">
@@ -73,26 +86,26 @@
         <!-- 紺色グラデーションマスク -->
         <div class="absolute inset-0 bg-gradient-to-b from-[#002D5B]/70 via-[#002D5B]/40 to-[#002D5B]/70"></div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center h-full text-white">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-poppins font-bold leading-tight mb-4 tracking-wider w-full mx-auto">
-                <span class="flex flex-wrap justify-center gap-x-4">
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center h-full text-white pt-24">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-poppins font-bold leading-tight mb-6 tracking-widest w-full mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <span class="flex flex-wrap justify-center gap-x-6">
                     <span class="inline-block whitespace-nowrap">LOGISTICS FRONTIER</span>
-                    <span class="text-[#D12442] drop-shadow-[0_0_15px_rgba(209,36,66,0.4)] inline-block whitespace-nowrap">INTERVIEWS</span>
+                    <span class="text-[#D12442] inline-block whitespace-nowrap drop-shadow-[0_0_15px_rgba(209,36,66,0.5)]">INTERVIEWS</span>
                 </span>
             </h1>
-            <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-8 tracking-tight w-full mx-auto text-slate-100">
-                <span class="inline-block">日本物流の</span><span class="inline-block">「知」と「経験」を</span><span class="inline-block">次代へ継承する</span>
+            <p class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-10 tracking-widest w-full mx-auto text-slate-100" data-aos="fade-up" data-aos-delay="400">
+                <span class="inline-block">日本物流の</span><span class="inline-block mx-2">「知」と「経験」を</span><span class="inline-block">次代へ継承する</span>
             </p>
-            <p class="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed mb-10 max-w-4xl mx-auto px-4">
-                <span class="inline-block">物流・サプライチェーン of 最前線で</span><span class="inline-block">挑戦し続ける方々の</span><span class="inline-block">意思決定や経験をインタビューし、</span><span class="inline-block">その知見を記録・発信するプロジェクト。</span><br class="hidden lg:block"><span class="inline-block">学生が主体となって取材し、</span><span class="inline-block">学び、</span><span class="inline-block">未来の物流を共に考えていきます。</span>
+            <p class="text-sm sm:text-base md:text-lg text-slate-200 leading-loose mb-12 max-w-3xl mx-auto px-4 font-medium" data-aos="fade-up" data-aos-delay="600">
+                <span class="inline-block">物流・サプライチェーンの最前線で</span><span class="inline-block">挑戦し続ける方々の</span><span class="inline-block">意思決定や経験をインタビューし、</span><span class="inline-block">その知見を記録・発信するプロジェクト。</span><br class="hidden lg:block"><span class="inline-block mt-2">学生が主体となって取材し、</span><span class="inline-block">学び、</span><span class="inline-block">未来の物流を共に考えていきます。</span>
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full max-w-md sm:max-w-none">
-                <a href="archive.html" class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(209,36,66,0.4)] hover:shadow-[0_8px_30px_rgba(209,36,66,0.6)] transform hover:-translate-y-0.5 text-sm md:text-base">
-                    <span>取材記事を読む</span> <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            <div class="flex flex-col sm:flex-row gap-6 items-center justify-center w-full max-w-md sm:max-w-none" data-aos="fade-up" data-aos-delay="800">
+                <a href="archive.html" class="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-10 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-base md:text-lg tracking-wide">
+                    <span>取材記事を読む</span> <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-2"></i>
                 </a>
-                <a href="#features" class="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 text-sm md:text-base">
+                <a href="#features" class="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white text-white font-bold px-10 py-5 rounded-full transition-all duration-300 transform hover:-translate-y-1 text-base md:text-lg tracking-wide">
                     <span>詳細を見る</span>
-                    <i class="fa-solid fa-chevron-down transition-transform group-hover:translate-y-1"></i>
+                    <i class="fa-solid fa-chevron-down transition-transform group-hover:translate-y-2"></i>
                 </a>
             </div>
         </div>
@@ -105,62 +118,70 @@
     </div>
 
     <!-- メインコンテンツコンテナ (画面幅にフィットするように最大幅を max-w-7xl に拡張) -->
-    <main id="features" class="max-w-7xl mx-auto px-6 lg:px-8 py-16 space-y-16 relative z-10">
+    <main id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-24 relative z-10">
         
+        <!-- Section Title for Features -->
+        <div class="text-center space-y-4" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#002D5B] tracking-tight">LOGISTICS FRONTIERの<span class="text-[#D12442]">特徴</span></h2>
+            <p class="text-slate-500 font-medium">物流業界の最前線を探求する3つのアプローチ</p>
+        </div>
+
         <!-- ③ 特徴カード（3カラム横並び、幅広対応、境界線明確化） -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12" data-aos="fade-up" data-aos-delay="200">
             <!-- Card 1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4 shrink-0">
-                        <div class="w-12 h-12 rounded-xl bg-[#9E1B32]/10 flex items-center justify-center text-[#9E1B32] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-microphone-lines"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">現場のリアルを届ける。</h3>
+            <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-sm border border-slate-200 hover:border-[#D12442]/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+                <div class="flex items-center gap-5 mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-[#002D5B]/5 flex items-center justify-center text-[#D12442] text-2xl shrink-0 group-hover:bg-[#D12442] group-hover:text-white transition-all duration-300 shadow-sm">
+                        <i class="fa-solid fa-microphone-lines"></i>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">教科書的な知識に留まらず、企業の物流担当者が実際に直面している課題や、泥臭い現場のリアルな状況をインタビューします。</p>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#002D5B] transition-colors leading-tight">現場のリアルを<br>届ける。</h3>
                 </div>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">教科書的な知識に留まらず、企業の物流担当者が実際に直面している課題や、泥臭い現場のリアルな状況をインタビューします。</p>
             </div>
             
             <!-- Card 2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4 shrink-0">
-                        <div class="w-12 h-12 rounded-xl bg-[#002D5B]/10 flex items-center justify-center text-[#002D5B] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">学術的な視点で物流を見る。</h3>
+            <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-sm border border-slate-200 hover:border-[#002D5B]/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+                <div class="flex items-center gap-5 mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-[#002D5B]/5 flex items-center justify-center text-[#002D5B] text-2xl shrink-0 group-hover:bg-[#002D5B] group-hover:text-white transition-all duration-300 shadow-sm">
+                        <i class="fa-solid fa-graduation-cap"></i>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">早稲田大学での数理最適化やシミュレーション研究の知見を背景に、学術と現場のギャップを見ていきます。</p>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#002D5B] transition-colors leading-tight">学術的な視点で<br>物流を見る。</h3>
                 </div>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">早稲田大学での数理最適化やシミュレーション研究の知見を背景に、学術と現場のギャップを見ていきます。</p>
             </div>
             
             <!-- Card 3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-[#002D5B]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-4 mb-4 shrink-0">
-                        <div class="w-12 h-12 rounded-xl bg-[#9E1B32]/10 flex items-center justify-center text-[#9E1B32] text-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-rocket"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug">産学をつなぐ架け橋となる。</h3>
+            <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-sm border border-slate-200 hover:border-[#D12442]/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+                <div class="flex items-center gap-5 mb-6">
+                    <div class="w-14 h-14 rounded-2xl bg-[#002D5B]/5 flex items-center justify-center text-[#D12442] text-2xl shrink-0 group-hover:bg-[#D12442] group-hover:text-white transition-all duration-300 shadow-sm">
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">これからの物流業界を担う若い世代や研究者に向けて、最前線の企業の挑戦を発信し、物流への関心を集めて発展に貢献します。</p>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#002D5B] transition-colors leading-tight">産学をつなぐ<br>架け橋となる。</h3>
                 </div>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">これからの物流業界を担う若い世代や研究者に向けて、最前線の企業の挑戦を発信し、物流への関心を集めて発展に貢献します。</p>
             </div>
         </div>
 
         <!-- 下部の最新取材記事・ポッドキャスト -->
-        <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="border-b-2 border-[#002D5B] pb-3 flex items-center gap-2">
-                <span class="w-1.5 h-6 bg-[#9E1B32] rounded-full"></span>
-                <h3 class="text-xl font-bold text-[#002D5B]">最新取材記事・ポッドキャスト</h3>
+        <div class="space-y-10" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-4 gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-8 bg-[#D12442] rounded-full"></span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#002D5B]">最新取材記事</h2>
+                </div>
+                <a href="archive.html" class="text-sm font-bold text-slate-500 hover:text-[#D12442] transition-colors flex items-center gap-2 group">
+                    一覧を見る <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
             
             <!-- ======================================================================= -->
             <!-- 【管理用コメント】 -->
             <!-- 記事を追加する場合は、以下のグリッド(div)の中にカード(aタグ)をコピーして追加・編集してください。 -->
             <!-- ======================================================================= -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
                 <!-- 記事カードテンプレート (ここからコピー) -->
                 <a href="archive.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group">
