@@ -38,19 +38,19 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen">
+<body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen overflow-x-hidden">
 
     <!-- Ambient glowing backgrounds -->
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
     <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
 
-    <header x-data="{ scrolled: false }"
+    <header x-data="{ scrolled: false, mobileMenuOpen: false }"
          @scroll.window="scrolled = (window.pageYOffset > 50)"
          :class="scrolled ? 'bg-white/95 shadow-md backdrop-blur-md py-2' : 'bg-white py-4'"
          class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <!-- Logo -->
-            <a href="index.html" class="flex items-center space-x-3 group">
+            <a href="index.html" class="flex items-center space-x-3 group relative z-50">
                 <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS" class="h-10 w-auto group-hover:opacity-80 transition-opacity">
                 <div class="flex flex-col">
                     <span class="font-poppins text-lg md:text-xl font-bold tracking-wider text-[#002D5B] leading-tight">LOGISTICS FRONTIER</span>
@@ -72,10 +72,33 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <div class="lg:hidden flex items-center">
-                <button class="text-slate-800 hover:text-[#002D5B] focus:outline-none p-2">
-                    <i class="fa-solid fa-bars text-2xl"></i>
+            <div class="lg:hidden flex items-center relative z-50">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-800 hover:text-[#002D5B] focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl" x-show="!mobileMenuOpen"></i>
+                    <i class="fa-solid fa-xmark text-2xl" x-show="mobileMenuOpen" x-cloak style="display: none;"></i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div x-show="mobileMenuOpen"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="lg:hidden absolute top-0 left-0 w-full bg-white border-b border-slate-200 shadow-xl pt-20 pb-6 px-6"
+             x-cloak style="display: none;">
+            <div class="flex flex-col space-y-2">
+                <a href="index.html" class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">TOP</a>
+                <a href="archive.html" class="text-[#D12442] font-bold block py-3 border-b border-slate-100 text-lg">取材記事</a>
+                <a href="profile.html" class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">運営・研究室</a>
+                <div class="pt-4">
+                    <a href="contact.html" class="bg-[#002D5B] text-white px-6 py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 w-full shadow-md">
+                        <i class="fa-regular fa-envelope"></i> お問い合わせ
+                    </a>
+                </div>
             </div>
         </div>
     </header>
