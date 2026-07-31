@@ -147,8 +147,8 @@
         </div>
     </header>
 
-    <!-- ① ディスプレイの高さに完全自動調整する全画面ヒーローセクション -->
-    <div class="relative w-full h-screen min-h-[520px] flex items-center justify-center bg-slate-950 overflow-hidden"
+    <!-- ① ディスプレイの高さに柔軟に対応するヒーローセクション（ヘッダーと被らず四角が美しく残るように調整） -->
+    <div class="relative w-full min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden pt-28 pb-20"
         data-aos="fade-in">
 
         <!-- ② 背景動画を埋め込むための箱（videoタグ） -->
@@ -162,7 +162,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-[#002D5B]/70 via-[#002D5B]/40 to-[#002D5B]/70"></div>
 
         <div
-            class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center h-full text-white pt-24">
+            class="relative z-10 max-w-7xl mx-auto px-6 text-center text-shadow flex flex-col items-center justify-center text-white">
             <h1 class="text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-poppins font-bold leading-tight mb-6 tracking-wider sm:tracking-widest w-full mx-auto"
                 data-aos="fade-up" data-aos-delay="200">
                 <span class="flex flex-col sm:flex-row flex-wrap justify-center sm:gap-x-6 gap-y-2">
@@ -183,7 +183,7 @@
                     class="hidden lg:block"><span class="inline-block mt-2">学生が主体となって取材し、</span><span
                     class="inline-block">学び、</span><span class="inline-block">未来の物流を共に考えていきます。</span>
             </p>
-            <div class="flex flex-col sm:flex-row gap-6 items-center justify-center w-full max-w-md sm:max-w-none"
+            <div class="flex flex-col sm:flex-row gap-6 items-center justify-center w-full max-w-md sm:max-w-none mb-6"
                 data-aos="fade-up" data-aos-delay="800">
                 <a href="archive.html"
                     class="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-10 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-base md:text-lg tracking-wide">
@@ -200,7 +200,7 @@
 
         <!-- スクロールインジケーター -->
         <div
-            class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce">
+            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1.5 animate-bounce">
             <span class="text-[9px] uppercase tracking-widest text-slate-400">Scroll Down</span>
             <i class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
         </div>
