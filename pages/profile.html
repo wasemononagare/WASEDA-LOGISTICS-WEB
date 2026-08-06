@@ -38,19 +38,19 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen">
+<body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen overflow-x-hidden">
 
     <!-- Ambient glowing backgrounds -->
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#002D5B]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
     <div class="absolute top-1/2 right-0 w-96 h-96 bg-[#9E1B32]/3 rounded-full blur-3xl pointer-events-none hidden md:block"></div>
 
-    <header x-data="{ scrolled: false }"
+    <header x-data="{ scrolled: false, mobileMenuOpen: false }"
          @scroll.window="scrolled = (window.pageYOffset > 50)"
          :class="scrolled ? 'bg-white/95 shadow-md backdrop-blur-md py-2' : 'bg-white py-4'"
          class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <!-- Logo -->
-            <a href="index.html" class="flex items-center space-x-3 group">
+            <a href="index.html" class="flex items-center space-x-3 group relative z-50">
                 <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS" class="h-10 w-auto group-hover:opacity-80 transition-opacity">
                 <div class="flex flex-col">
                     <span class="font-poppins text-lg md:text-xl font-bold tracking-wider text-[#002D5B] leading-tight">LOGISTICS FRONTIER</span>
@@ -72,10 +72,33 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <div class="lg:hidden flex items-center">
-                <button class="text-slate-800 hover:text-[#002D5B] focus:outline-none p-2">
-                    <i class="fa-solid fa-bars text-2xl"></i>
+            <div class="lg:hidden flex items-center relative z-50">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-800 hover:text-[#002D5B] focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl" x-show="!mobileMenuOpen"></i>
+                    <i class="fa-solid fa-xmark text-2xl" x-show="mobileMenuOpen" x-cloak style="display: none;"></i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div x-show="mobileMenuOpen"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="lg:hidden absolute top-0 left-0 w-full bg-white border-b border-slate-200 shadow-xl pt-20 pb-6 px-6"
+             x-cloak style="display: none;">
+            <div class="flex flex-col space-y-2">
+                <a href="index.html" class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">TOP</a>
+                <a href="archive.html" class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">取材記事</a>
+                <a href="profile.html" class="text-[#D12442] font-bold block py-3 border-b border-slate-100 text-lg">運営・研究室</a>
+                <div class="pt-4">
+                    <a href="contact.html" class="bg-[#002D5B] text-white px-6 py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 w-full shadow-md">
+                        <i class="fa-regular fa-envelope"></i> お問い合わせ
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -104,12 +127,15 @@
                     <div class="text-slate-600 text-sm leading-relaxed space-y-4">
                         <p>私たちは、早稲田大学・蓮池研究室で数理最適化やシミュレーションを用いて物流研究を行っているメンバーと、共同研究先である鉄鋼系運送会社（メタル便）の有志メンバーで構成されています。本プロジェクトでは、日本物流の発展に向けて、<strong>SC（サプライチェーン：Supply Chain）</strong>の現場の実態や、最前線で物流を支えてきた先人たちの貴重な「知」と「経験」を後世（次代）へ継承・発信していくことを目的としています。この情報発信活動を通じて、学生自身にとっても実務的な知見や多様な視点を獲得し、深い学びを得るための自主プロジェクトとして活動しています。</p>
                         <p>単に研究室に籠もるだけでなく、現場調査（フィールドワーク）を通じて実社会の物流効率化・2024年問題をはじめとする社会的課題にコミットすることを目指しています。</p>
-                        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-4">
+                        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-4 items-center">
                             <a href="https://hasuikelab.w.waseda.jp/" target="_blank" class="inline-flex items-center space-x-1 text-xs text-[#002D5B] font-bold hover:text-[#9E1B32] hover:underline transition-colors">
                                 <span>蓮池研究室 公式サイト</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                             </a>
                             <a href="https://www.metalbin.net/" target="_blank" class="inline-flex items-center space-x-1 text-xs text-[#9E1B32] font-bold hover:text-[#002D5B] hover:underline transition-colors">
                                 <span>メタル便 公式サイト</span> <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                            <a href="/prospectus.pdf" target="_blank" class="inline-flex items-center space-x-1 text-xs text-[#002D5B] font-bold hover:text-[#9E1B32] hover:underline transition-colors">
+                                <span>趣意書</span> <i class="fa-solid fa-file-pdf text-[10px] text-[#9E1B32]"></i>
                             </a>
                         </div>
                     </div>
@@ -201,9 +227,9 @@
                                 </div>
                             </div>
                             <div class="text-slate-600 text-sm leading-relaxed space-y-3">
-                                <p>学部生時代は理工展連絡会の財務局長兼会計として学園祭の運営に携わりました。</p>
+                                <p>学部生時代は早稲田大学理工展連絡会の財務局長兼会計として学園祭「理工展」の運営に携わりました。</p>
                                 <p>研究活動では2024年問題に代表される物流課題の解決として移動販売に着目し、各地点の需要が不確実な配送計画問題ついて輸送コストと需要量充足のトレードオフを満たすモデルを提案し、国際学会で発表を行いました。修士では回収も含めた配送計画問題についての研究を行う予定です。</p>
-                                <p>本プロジェクトを通じて、社会人として重要となる視座や考え方を身につけたいと考えています。</p>
+                                <p>本プロジェクトを通じて、今後研究者としてのキャリアを歩むうえで、業界は違えど現場に寄り添った研究を行うための視点や、社会人として重要となる視座や考え方を身につけたいと考えています。</p>
                             </div>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
@@ -257,8 +283,9 @@
                                 </div>
                             </div>
                             <div class="text-slate-600 text-sm leading-relaxed space-y-3">
-                                <p>現在、早稲田大学の学部4年生として経営システム工学を専攻しています。実社会の課題解決に向けたアプローチを学んでおり、物流分野への応用に関心を持っています。</p>
-                                <p>本プロジェクトを通じて、現場の実情に触れ、理論と実践を結びつける視点を身につけたいと考えています。</p>
+                                <p>学部3年生の時に参加した製薬企業のインターンシップにて、コロナ禍でも医療製品の供給を維持するサプライチェーンの工夫を知ったことをきっかけに、サプライチェーンマネジメントに興味を持ちました。将来は、災害下でも食品や医療製品などの生活必需品を安定的に供給できる仕組みづくりに携わりたいと考えています。</p>
+                                <p>現在は卒業論文として、菓子販売における需要予測と最適発注量の決定手法を研究しています。サプライチェーンの一部分である在庫管理を学ぶ中で、その過程にある物流や倉庫管理の実態についても視野を広げていきたいと考えております。</p>
+                                <p>本プロジェクトを通して、現場の実情に触れながら、サプライチェーンへの理解を深めていきたいです。</p>
                             </div>
                         </div>
                         <div class="bg-slate-50 p-4 rounded-xl border-l-4 border-[#9E1B32] shadow-inner text-xs mt-6">
