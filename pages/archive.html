@@ -112,9 +112,11 @@
 
             <div class="flex flex-wrap gap-2 mb-6 text-xs font-bold">
                 <button @click="currentCategory = 'all'" :class="currentCategory === 'all' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">すべて</button>
-                <button @click="currentCategory = 'food'" :class="currentCategory === 'food' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">食品・飲料</button>
+                <button @click="currentCategory = 'it'" :class="currentCategory === 'it' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">IT</button>
                 <button @click="currentCategory = 'steel'" :class="currentCategory === 'steel' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">鉄鋼・重機</button>
-                <button @click="currentCategory = 'tech'" :class="currentCategory === 'tech' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">IT・自動運転</button>
+                <button @click="currentCategory = 'food'" :class="currentCategory === 'food' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">食品</button>
+                <button @click="currentCategory = 'shipping'" :class="currentCategory === 'shipping' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">海運</button>
+                <button @click="currentCategory = 'land'" :class="currentCategory === 'land' ? 'bg-[#002D5B] text-white' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'" class="px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer">陸運</button>
             </div>
 
             <!-- ======================================================================= -->
@@ -131,31 +133,8 @@
                 -->
                 <!-- 記事カードテンプレート (ここまでコピー) -->
 
-                <!-- 前編：半生編 -->
-                <a href="article-watanabe-front.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group" x-show="currentCategory === 'all'" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
-                        <div class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300"></div>
-                        <i class="fa-solid fa-globe text-4xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">特別取材</span>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs text-slate-400 block mb-2 font-semibold">2026.08.07</span>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#9E1B32] transition-colors leading-snug cursor-pointer">
-                            【前編】渡辺景吾の半生：シベリア鉄道のロマンから釜山ハブ構想まで
-                        </h3>
-                        <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
-                            西濃運輸 元役員 / 西濃シェンカー（現セイノーロジックス）元社長 渡辺景吾氏の半生。物流との出会いや会社設立の苦悩、日本の港の課題を乗り越える挑戦に迫ります。
-                        </p>
-                        <div class="flex flex-wrap gap-1.5 mt-4">
-                            <span class="text-sm text-[#9E1B32] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                                詳しく読む <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
                 <!-- 後編：インタビュー -->
-                <a href="article-watanabe-back.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group" x-show="currentCategory === 'all'" data-aos="fade-up" data-aos-delay="300">
+                <a href="article-watanabe-back.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group" x-show="currentCategory === 'all'" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
                         <div class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300"></div>
                         <i class="fa-solid fa-users text-4xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
@@ -168,6 +147,29 @@
                         </h3>
                         <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
                             海外との交渉で直面した苦悩や、極限の研修で学んだ「知ったかぶりをしない」精神。そして、これからの若い世代へ向けた熱いメッセージをQ&A形式でお届けします。
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mt-4">
+                            <span class="text-sm text-[#9E1B32] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                                詳しく読む <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 前編：半生編 -->
+                <a href="article-watanabe-front.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group" x-show="currentCategory === 'all'" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300"></div>
+                        <i class="fa-solid fa-globe text-4xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">特別取材</span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-slate-400 block mb-2 font-semibold">2026.08.07</span>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#9E1B32] transition-colors leading-snug cursor-pointer">
+                            【前編】渡辺景吾の半生：シベリア鉄道のロマンから釜山ハブ構想まで
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
+                            西濃運輸 元役員 / 西濃シェンカー（現セイノーロジックス）元社長 渡辺景吾氏の半生。物流との出会いや会社設立の苦悩、日本の港の課題を乗り越える挑戦に迫ります。
                         </p>
                         <div class="flex flex-wrap gap-1.5 mt-4">
                             <span class="text-sm text-[#9E1B32] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
