@@ -131,27 +131,28 @@
                 -->
                 <!-- 記事カードテンプレート (ここまでコピー) -->
 
-                <!-- 予告/COMING SOONテンプレート -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] overflow-hidden border border-slate-200 opacity-75 relative group" x-show="currentCategory === 'all'" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-slate-100 relative flex items-center justify-center text-slate-300">
-                        <i class="fa-solid fa-globe text-4xl text-slate-300"></i>
-                        <span class="absolute top-3 left-3 bg-slate-500 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">特別取材</span>
-                        <div class="absolute inset-0 bg-white/20 backdrop-blur-[1.5px] flex items-center justify-center">
-                            <span class="bg-slate-900/70 text-white text-xs px-4 py-1.5 rounded-full font-bold flex items-center gap-1.5 shadow-md">
-                                <i class="fa-solid fa-lock text-[11px]"></i> 順次公開予定
+                <!-- 特別取材リンク -->
+                <a href="article-watanabe-front.html" class="block bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/20 hover:-translate-y-1 transition-all duration-300 group" x-show="currentCategory === 'all'" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300"></div>
+                        <i class="fa-solid fa-globe text-4xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
+                        <span class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">特別取材</span>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-slate-400 block mb-2 font-semibold">2026.08.07</span>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#9E1B32] transition-colors leading-snug cursor-pointer">
+                            日本の国際物流の歴史と、これからのロジスティクスを紐解く
+                        </h3>
+                        <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
+                            西濃運輸 元役員 / 西濃シェンカー（現セイノーロジックス）元社長 渡辺景吾氏への特別インタビュー。日本の国際物流の歩みを振り返りつつ、現在の日本物流への深い洞察と今後の展望を伺います。
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mt-4">
+                            <span class="text-sm text-[#9E1B32] font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                                詳しく読む <i class="fa-solid fa-arrow-right text-[11px]"></i>
                             </span>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs text-slate-400 block mb-2 font-semibold">COMING SOON</span>
-                        <h3 class="text-lg font-bold text-slate-400 mb-2 leading-snug">
-                            【次回予告】日本の国際物流の歴史と、これからのロジスティクスを紐解く
-                        </h3>
-                        <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
-                            西濃運輸 元役員 / 西濃シェンカー（現セイノーロジックス）元社長 渡辺景吾氏への特別インタビュー。日本の国際物流の歩みを振り返りつつ、現在の日本物流への深い洞察と今後の展望を伺います。
-                        </p>
-                    </div>
-                </div>
+                </a>
 
             </div>
         </div>
