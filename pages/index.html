@@ -186,12 +186,12 @@
             <div class="flex flex-col sm:flex-row gap-6 items-center justify-center w-full max-w-md sm:max-w-none mb-6 relative z-30"
                 data-aos="fade-up" data-aos-delay="800">
                 
-                <!-- 取材記事を見る（下方向に表示） -->
+                <!-- 取材記事を読む（下方向に表示） -->
                 <div class="relative w-full sm:w-auto" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button @click="open = !open" type="button"
                         class="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-10 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-base md:text-lg tracking-wide cursor-pointer">
                         <i class="fa-solid fa-newspaper text-xl"></i>
-                        <span>取材記事を見る</span>
+                        <span>取材記事を読む</span>
                         <i class="fa-solid fa-chevron-down text-xs opacity-80 transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
                     </button>
 
