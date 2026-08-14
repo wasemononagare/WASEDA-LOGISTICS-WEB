@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://waseda-logistics-web.vercel.app/sitemap.xml
+Sitemap: https://www.lfi-waseda.com/sitemap.xml
