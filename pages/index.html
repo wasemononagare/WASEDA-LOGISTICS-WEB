@@ -90,7 +90,7 @@
 </head>
 
 <body class="bg-slate-50 text-slate-800 bg-grid-pattern relative min-h-screen overflow-x-hidden"
-    x-data="{ articleModalOpen: false, podcastModalOpen: false }">
+    x-data="{ podcastModalOpen: false }">
 
     <!-- Ambient glowing backgrounds -->
     <div
@@ -105,7 +105,7 @@
         class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <!-- Logo -->
-            <a href="index.html" class="flex items-center space-x-3 group relative z-50">
+            <a href="./" class="flex items-center space-x-3 group relative z-50">
                 <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS"
                     class="h-10 w-auto group-hover:opacity-80 transition-opacity">
                 <div class="flex flex-col">
@@ -120,15 +120,15 @@
             <!-- Right Side (Navigation + Button) -->
             <div class="hidden lg:flex items-center space-x-12">
                 <nav class="flex items-center space-x-8">
-                    <a href="index.html"
+                    <a href="./"
                         class="text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-[#D12442]">TOP</a>
-                    <a href="archive.html" @click.prevent="articleModalOpen = true"
-                        class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442] cursor-pointer">取材記事</a>
-                    <a href="profile.html"
+                    <a href="archive"
+                        class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442]">取材記事</a>
+                    <a href="profile"
                         class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442]">運営・研究室</a>
                 </nav>
 
-                <a href="contact.html"
+                <a href="contact"
                     class="bg-[#002D5B] hover:bg-[#1a416b] text-white px-6 py-2.5 rounded-full font-bold text-sm transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
                     <i class="fa-regular fa-envelope"></i> お問い合わせ
                 </a>
@@ -152,14 +152,14 @@
             class="lg:hidden absolute top-0 left-0 w-full bg-white border-b border-slate-200 shadow-xl pt-20 pb-6 px-6"
             x-cloak style="display: none;">
             <div class="flex flex-col space-y-2">
-                <a href="index.html"
+                <a href="./"
                     class="text-[#D12442] font-bold block py-3 border-b border-slate-100 text-lg">TOP</a>
-                <a href="archive.html" @click.prevent="mobileMenuOpen = false; articleModalOpen = true"
-                    class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg cursor-pointer">取材記事</a>
-                <a href="profile.html"
+                <a href="archive" @click="mobileMenuOpen = false"
+                    class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">取材記事</a>
+                <a href="profile"
                     class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">運営・研究室</a>
                 <div class="pt-4">
-                    <a href="contact.html"
+                    <a href="contact"
                         class="bg-[#002D5B] text-white px-6 py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 w-full shadow-md">
                         <i class="fa-regular fa-envelope"></i> お問い合わせ
                     </a>
@@ -207,48 +207,13 @@
             <div class="flex flex-col sm:flex-row gap-6 items-center justify-center w-full max-w-md sm:max-w-none mb-6 relative z-30"
                 data-aos="fade-up" data-aos-delay="800">
 
-                <!-- 取材記事を見る（下方向に表示） -->
-                <div class="relative w-full sm:w-auto" x-data="{ open: false }" @mouseenter="open = true"
-                    @mouseleave="open = false">
-                    <button @click="open = !open" type="button"
-                        class="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-10 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-base md:text-lg tracking-wide cursor-pointer">
-                        <i class="fa-solid fa-newspaper text-xl"></i>
-                        <span>取材記事を見る</span>
-                        <i class="fa-solid fa-chevron-down text-xs opacity-80 transition-transform duration-300"
-                            :class="open ? 'rotate-180' : ''"></i>
-                    </button>
-
-                    <!-- ポップアップ選択メニュー（下方向にドロップ表示） -->
-                    <div x-show="open" x-transition:enter="transition ease-out duration-200"
-                        x-transition:enter-start="opacity-0 translate-y-1 scale-95"
-                        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-                        x-transition:leave="transition ease-in duration-150"
-                        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-                        x-transition:leave-end="opacity-0 translate-y-1 scale-95"
-                        class="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-80 z-50 text-left" x-cloak
-                        style="display: none;">
-
-                        <div
-                            class="bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl p-2.5 shadow-2xl space-y-1">
-                            <!-- Webサイトで読む -->
-                            <a href="archive.html"
-                                class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/90 text-white transition-all group/item">
-                                <div
-                                    class="w-10 h-10 rounded-xl bg-[#002D5B] flex items-center justify-center text-white text-lg shrink-0 group-hover/item:scale-110 transition-transform shadow-sm">
-                                    <i class="fa-solid fa-globe"></i>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div
-                                        class="text-sm font-bold text-white group-hover/item:text-[#D12442] transition-colors flex items-center justify-between">
-                                        <span>Webサイトで読む</span>
-                                        <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                                    </div>
-                                    <div class="text-[11px] text-slate-400 truncate">当サイト一覧（archive.html）</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <!-- 取材記事を見る（直接一覧ページへ遷移） -->
+                <a href="archive"
+                    class="w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-[#D12442] hover:bg-[#B81C38] text-white font-bold px-10 py-5 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-base md:text-lg tracking-wide cursor-pointer">
+                    <i class="fa-solid fa-newspaper text-xl"></i>
+                    <span>取材記事を見る</span>
+                    <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
 
                 <!-- Podcastを聞く（YouTube / Spotify） -->
                 <div class="relative w-full sm:w-auto" x-data="{ open: false }" @mouseenter="open = true"
@@ -437,7 +402,7 @@
                     <span class="w-2 h-8 bg-[#D12442] rounded-full"></span>
                     <h2 class="text-2xl md:text-3xl font-bold text-[#002D5B]">最新取材記事</h2>
                 </div>
-                <a href="archive.html"
+                <a href="archive"
                     class="text-sm font-bold text-slate-500 hover:text-[#D12442] transition-colors flex items-center gap-2 group">
                     一覧を見る <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -472,12 +437,12 @@
                         </div>
                     </div>
 
-                    <!-- 選択アクションバー -->
+                    <!-- アクションバー -->
                     <div class="p-6 pt-3 border-t border-slate-100/80 bg-slate-50/50 flex items-center gap-2">
-                        <a href="article-watanabe-back.html"
+                        <a href="article-watanabe-back"
                             class="flex-1 py-2.5 px-3 bg-[#002D5B] hover:bg-[#1a416b] text-white text-xs font-bold rounded-xl text-center transition-all shadow-sm flex items-center justify-center gap-1.5 group/btn">
-                            <i class="fa-solid fa-globe text-[11px]"></i>
-                            <span>Webサイトで読む</span>
+                            <i class="fa-solid fa-newspaper text-[11px]"></i>
+                            <span>記事を読む</span>
                         </a>
                     </div>
                 </div>
@@ -505,12 +470,12 @@
                         </div>
                     </div>
 
-                    <!-- 選択アクションバー -->
+                    <!-- アクションバー -->
                     <div class="p-6 pt-3 border-t border-slate-100/80 bg-slate-50/50 flex items-center gap-2">
-                        <a href="article-watanabe-front.html"
+                        <a href="article-watanabe-front"
                             class="flex-1 py-2.5 px-3 bg-[#002D5B] hover:bg-[#1a416b] text-white text-xs font-bold rounded-xl text-center transition-all shadow-sm flex items-center justify-center gap-1.5 group/btn">
-                            <i class="fa-solid fa-globe text-[11px]"></i>
-                            <span>Webサイトで読む</span>
+                            <i class="fa-solid fa-newspaper text-[11px]"></i>
+                            <span>記事を読む</span>
                         </a>
                     </div>
                 </div>
@@ -531,62 +496,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ========================================== -->
-    <!-- 取材記事 選択モーダル (Webサイト vs note) -->
-    <!-- ========================================== -->
-    <div x-show="articleModalOpen" x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0" @keydown.escape.window="articleModalOpen = false"
-        class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md" x-cloak
-        style="display: none;">
-
-        <div @click.away="articleModalOpen = false" x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
-            x-transition:leave-end="opacity-0 scale-95 translate-y-4"
-            class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full text-white shadow-2xl relative overflow-hidden">
-
-            <!-- 閉じるボタン -->
-            <button @click="articleModalOpen = false"
-                class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-full hover:bg-slate-800/80 transition-colors cursor-pointer">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-
-            <div class="text-center mb-6">
-                <span
-                    class="inline-block px-3 py-1 bg-[#D12442]/20 text-[#D12442] text-xs font-bold rounded-full mb-3 tracking-wider uppercase">INTERVIEW
-                    ARTICLES</span>
-                <h3 class="text-2xl font-bold text-white tracking-tight">取材記事の閲覧先を選択</h3>
-                <p class="text-xs sm:text-sm text-slate-400 mt-2">ご覧になりたいプラットフォームをお選びください。</p>
-            </div>
-
-            <div class="flex justify-center">
-                <!-- Webサイトで読む (archive.html) -->
-                <a href="archive.html" @click="articleModalOpen = false"
-                    class="group relative flex flex-col justify-between p-6 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/80 hover:border-[#D12442] rounded-2xl transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 max-w-sm w-full">
-                    <div>
-                        <div
-                            class="w-12 h-12 rounded-xl bg-[#002D5B] flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-globe"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white group-hover:text-[#D12442] transition-colors mb-2">
-                            Webサイトで読む</h4>
-                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                            当サイト内の取材記事一覧・アーカイブページで記事を閲覧します。</p>
-                    </div>
-                    <div
-                        class="inline-flex items-center text-xs font-bold text-[#D12442] group-hover:gap-2 transition-all">
-                        <span>アーカイブページへ</span>
-                        <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- ========================================== -->
     <!-- Podcast 選択・案内モーダル -->

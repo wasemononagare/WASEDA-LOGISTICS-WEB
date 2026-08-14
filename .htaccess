@@ -1,0 +1,14 @@
+# Clean URLs: .html拡張子の省略と自動補完設定
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # .html 付きでアクセスされた場合、.html なしのURLへ 301 リダイレクト
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # 実在するファイルまたはディレクトリでない場合、.html を補完して内部転送
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
