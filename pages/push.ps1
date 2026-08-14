@@ -19,7 +19,7 @@ Write-Host "`n=== 3. Pushing to GitHub (origin/main) ===" -ForegroundColor Cyan
 & $git -c credential.helper= push origin main
 
 if ($LASTEXITCODE -eq 0) {
-    Write-Host "`n[SUCCESS] GitHubに正常にPushされました！" -ForegroundColor Green
+    Write-Host "`n[SUCCESS] Push successfully completed!" -ForegroundColor Green
 } else {
-    Write-Host "`n[ERROR] Pushに失敗しました。" -ForegroundColor Red
+    Write-Host "`n[ERROR] Push failed." -ForegroundColor Red
 }
