@@ -1,8 +1,0 @@
-[build]
-  publish = "."
-
-[[redirects]]
-  from = "/*"
-  to = "/:splat.html"
-  status = 200
-  conditions = {Path = ["!/images/*", "!/assets/*", "!/*.css", "!/*.js", "!/*.png", "!/*.jpg", "!/*.ico", "!/*.svg"]}
