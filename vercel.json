@@ -1,4 +1,20 @@
-{
+﻿{
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/index.html", "destination": "/pages/index.html" },
+    { "source": "/archive", "destination": "/pages/archive.html" },
+    { "source": "/archive.html", "destination": "/pages/archive.html" },
+    { "source": "/profile", "destination": "/pages/profile.html" },
+    { "source": "/profile.html", "destination": "/pages/profile.html" },
+    { "source": "/contact", "destination": "/pages/contact.html" },
+    { "source": "/contact.html", "destination": "/pages/contact.html" },
+    { "source": "/watanabe_keigo", "destination": "/pages/watanabe_keigo.html" },
+    { "source": "/watanabe_keigo.html", "destination": "/pages/watanabe_keigo.html" },
+    { "source": "/article-watanabe-front", "destination": "/pages/article-watanabe-front.html" },
+    { "source": "/article-watanabe-front.html", "destination": "/pages/article-watanabe-front.html" },
+    { "source": "/article-watanabe-back", "destination": "/pages/article-watanabe-back.html" },
+    { "source": "/article-watanabe-back.html", "destination": "/pages/article-watanabe-back.html" }
+  ]
 }
