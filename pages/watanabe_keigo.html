@@ -1,17 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="../images/favicon-192.png" sizes="192x192">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/images/favicon-192.png" sizes="192x192">
     <title>渡辺景吾 | LOGISTICS FRONTIER INTERVIEWS</title>
     <meta name="description" content="西濃運輸 元役員・西濃シェンカー（現セイノーロジックス）元社長 渡辺景吾氏のプロフィール、Podcastインタビュー、取材記事。">
+    <link rel="canonical" href="https://www.lfi-waseda.com/pages/watanabe_keigo">
     <meta property="og:title" content="渡辺景吾 | LOGISTICS FRONTIER INTERVIEWS">
     <meta property="og:description" content="西濃運輸 元役員 渡辺景吾氏のプロフィール・インタビュー記事・Podcast。">
     <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://www.lfi-waseda.com/pages/watanabe_keigo">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link class="font-awesome" rel="stylesheet"
@@ -133,8 +135,8 @@
         :class="scrolled ? 'bg-white/95 shadow-md backdrop-blur-md py-2' : 'bg-white py-4'"
         class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <a href="./" class="flex items-center space-x-3 group relative z-50">
-                <img src="../images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS"
+            <a href="/pages/" class="flex items-center space-x-3 group relative z-50">
+                <img src="/images/logo_icon.png" alt="LOGISTICS FRONTIER INTERVIEWS"
                     class="h-10 w-auto group-hover:opacity-80 transition-opacity">
                 <div class="flex flex-col">
                     <span
@@ -146,14 +148,14 @@
             </a>
             <div class="hidden lg:flex items-center space-x-12">
                 <nav class="flex items-center space-x-8">
-                    <a href="./"
+                    <a href="/pages/"
                         class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442]">TOP</a>
-                    <a href="archive"
+                    <a href="/pages/archive"
                         class="text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-[#D12442]">取材記事</a>
-                    <a href="profile"
+                    <a href="/pages/profile"
                         class="text-slate-800 hover:text-[#D12442] font-bold transition-colors pb-1 border-b-2 border-transparent hover:border-[#D12442]">運営・研究室</a>
                 </nav>
-                <a href="contact"
+                <a href="/pages/contact"
                     class="bg-[#002D5B] hover:bg-[#1a416b] text-white px-6 py-2.5 rounded-full font-bold text-sm transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
                     <i class="fa-regular fa-envelope"></i> お問い合わせ
                 </a>
@@ -173,14 +175,14 @@
             class="lg:hidden absolute top-0 left-0 w-full bg-white border-b border-slate-200 shadow-xl pt-20 pb-6 px-6"
             x-cloak style="display: none;">
             <div class="flex flex-col space-y-2">
-                <a href="./"
+                <a href="/pages/"
                     class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">TOP</a>
-                <a href="archive"
+                <a href="/pages/archive"
                     class="text-[#D12442] font-bold block py-3 border-b border-slate-100 text-lg">取材記事</a>
-                <a href="profile"
+                <a href="/pages/profile"
                     class="text-slate-800 font-bold block py-3 border-b border-slate-100 text-lg">運営・研究室</a>
                 <div class="pt-4">
-                    <a href="contact"
+                    <a href="/pages/contact"
                         class="bg-[#002D5B] text-white px-6 py-3.5 rounded-full font-bold text-center flex items-center justify-center gap-2 w-full shadow-md">
                         <i class="fa-regular fa-envelope"></i> お問い合わせ
                     </a>
@@ -192,7 +194,7 @@
     <!-- Breadcrumb -->
     <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-2 relative z-10">
         <nav class="flex items-center text-xs text-slate-400 gap-1.5" data-aos="fade-down" data-aos-duration="400">
-            <a href="archive" class="hover:text-[#002D5B] transition-colors font-semibold">
+            <a href="/pages/archive" class="hover:text-[#002D5B] transition-colors font-semibold">
                 <i class="fa-solid fa-newspaper mr-1"></i>取材記事一覧
             </a>
             <i class="fa-solid fa-chevron-right text-[8px]"></i>
@@ -441,7 +443,7 @@
                         <p class="text-[11px] text-slate-400 font-semibold mb-5">Articles</p>
 
                         <!-- Article Card: Front (前編) -->
-                        <a href="article-watanabe-front"
+                        <a href="/pages/article-watanabe-front"
                             class="article-card block bg-slate-50 rounded-xl border border-slate-200 p-5 mb-4 hover:border-[#002D5B]/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group relative overflow-hidden"
                             id="article-front">
                             <div class="flex items-start gap-4">
@@ -472,7 +474,7 @@
                         </a>
 
                         <!-- Article Card: Back (後編) -->
-                        <a href="article-watanabe-back"
+                        <a href="/pages/article-watanabe-back"
                             class="article-card block bg-slate-50 rounded-xl border border-slate-200 p-5 mb-4 hover:border-[#9E1B32]/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group relative overflow-hidden"
                             id="article-back">
                             <div class="flex items-start gap-4">
@@ -519,7 +521,7 @@
                 </div>
 
                 <!-- Back to Archive -->
-                <a href="archive"
+                <a href="/pages/archive"
                     class="flex items-center justify-center gap-2 bg-white rounded-xl border border-slate-200 p-4 text-sm font-bold text-slate-600 hover:text-[#002D5B] hover:border-[#002D5B]/20 hover:shadow-md transition-all group"
                     id="back-to-archive">
                     <i class="fa-solid fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i>
