@@ -401,7 +401,7 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-4 gap-4">
                 <div class="flex items-center gap-3">
                     <span class="w-2 h-8 bg-[#D12442] rounded-full"></span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-[#002D5B]">最新取材記事</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#002D5B]">最新取材</h2>
                 </div>
                 <a href="/pages/archive"
                     class="text-sm font-bold text-slate-500 hover:text-[#D12442] transition-colors flex items-center gap-2 group">
@@ -413,73 +413,45 @@
             <!-- 【管理用コメント】 -->
             <!-- 記事を追加する場合は、以下のグリッド(div)の中にカード(aタグ)をコピーして追加・編集してください。 -->
             <!-- ======================================================================= -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
 
-                <!-- 後編：インタビュー -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/30 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between"
+                <!-- 渡辺景吾さん 人物カード -->
+                <a href="/pages/watanabe_keigo"
+                    class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#002D5B]/30 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between cursor-pointer"
                     data-aos="fade-up" data-aos-delay="200">
                     <div>
-                        <div
-                            class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
-                            <div
-                                class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300">
-                            </div>
-                            <i
-                                class="fa-solid fa-users text-5xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="aspect-video w-full relative overflow-hidden bg-slate-900 flex items-center justify-center">
+                            <img src="/images/article01_front_2.jpg" alt="渡辺景吾さん 取材記事"
+                                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
                             <span
-                                class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">特別取材</span>
+                                class="absolute top-3 left-3 bg-[#002D5B]/90 backdrop-blur-sm text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-sm">第１回取材</span>
                         </div>
-                        <div class="p-6 pb-2">
-                            <span class="text-[11px] text-slate-400 font-semibold block mb-2">2026.08.07</span>
-                            <h4
-                                class="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-[#9E1B32] transition-colors leading-snug">
-                                【後編】インタビュー抜粋：日本の物流の課題と、これからの若い世代へ
-                            </h4>
-                        </div>
-                    </div>
-
-                    <!-- 選択アクションバー -->
-                    <div class="p-6 pt-3 border-t border-slate-100/80 bg-slate-50/50 flex items-center gap-2">
-                        <a href="/pages/article-watanabe-back"
-                            class="flex-1 py-2.5 px-3 bg-[#002D5B] hover:bg-[#1a416b] text-white text-xs font-bold rounded-xl text-center transition-all shadow-sm flex items-center justify-center gap-1.5 group/btn">
-                            <i class="fa-solid fa-globe text-[11px]"></i>
-                            <span>Webサイトで読む</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 前編：半生編 -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#9E1B32]/30 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between"
-                    data-aos="fade-up" data-aos-delay="300">
-                    <div>
-                        <div
-                            class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative flex items-center justify-center text-slate-400 overflow-hidden">
-                            <div
-                                class="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs text-slate-400 font-semibold">2026.08.07</span>
+                                <span
+                                    class="bg-[#002D5B]/5 text-[#002D5B] text-[9px] px-2 py-0.5 rounded-full font-bold">前編・後編</span>
                             </div>
+                            <h3
+                                class="text-lg font-bold text-slate-900 mb-1.5 group-hover:text-[#002D5B] transition-colors leading-snug">
+                                渡辺 景吾
+                            </h3>
+                            <p class="text-[11px] text-slate-400 font-poppins font-semibold mb-2">Keigo Watanabe</p>
+                            <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+                                西濃運輸 元役員 / 西濃シェンカー元副社長 / セイノーロジックス元社長。シベリア鉄道輸送から海上混載のパイオニアへ——物流一筋のキャリアから得た知見を語る。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-slate-100/80 bg-slate-50/50 mt-2">
+                        <div
+                            class="py-2.5 px-3 bg-[#002D5B] group-hover:bg-[#1a416b] text-white text-xs font-bold rounded-xl text-center transition-all shadow-sm flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-user text-[11px]"></i>
+                            <span>プロフィール・記事を見る</span>
                             <i
-                                class="fa-solid fa-globe text-5xl text-[#002D5B]/70 group-hover:scale-110 transition-transform duration-500"></i>
-                            <span
-                                class="absolute top-3 left-3 bg-[#002D5B] text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">特別取材</span>
-                        </div>
-                        <div class="p-6 pb-2">
-                            <span class="text-[11px] text-slate-400 font-semibold block mb-2">2026.08.07</span>
-                            <h4
-                                class="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-[#9E1B32] transition-colors leading-snug">
-                                【前編】渡辺景吾の半生：シベリア鉄道のロマンから釜山ハブ構想まで
-                            </h4>
+                                class="fa-solid fa-arrow-right text-[9px] ml-1 group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
-
-                    <!-- 選択アクションバー -->
-                    <div class="p-6 pt-3 border-t border-slate-100/80 bg-slate-50/50 flex items-center gap-2">
-                        <a href="/pages/article-watanabe-front"
-                            class="flex-1 py-2.5 px-3 bg-[#002D5B] hover:bg-[#1a416b] text-white text-xs font-bold rounded-xl text-center transition-all shadow-sm flex items-center justify-center gap-1.5 group/btn">
-                            <i class="fa-solid fa-globe text-[11px]"></i>
-                            <span>Webサイトで読む</span>
-                        </a>
-                    </div>
-                </div>
+                </a>
 
             </div>
         </div>
