@@ -87,6 +87,25 @@
             padding: 0;
             height: 160px;
         }
+
+        .spotify-embed-shell {
+            overflow: hidden;
+            max-width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .spotify-embed-frame {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            height: 352px;
+            border-radius: 12px;
+        }
     </style>
 </head>
 
@@ -258,7 +277,7 @@
                             </a>
 
                             <!-- Spotify -->
-                            <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer"
+                            <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
                                 class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/90 text-white transition-all group/item">
                                 <div
                                     class="w-10 h-10 rounded-xl bg-[#1DB954]/20 border border-[#1DB954]/30 flex items-center justify-center text-[#1DB954] text-lg shrink-0 group-hover/item:scale-110 transition-transform shadow-sm">
@@ -396,6 +415,48 @@
             </div>
         </div>
 
+        <!-- Spotify公式Podcast番組埋め込みセクション -->
+        <div class="mt-8" data-aos="fade-up" data-aos-delay="350">
+            <div
+                class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-[#1DB954]/50 hover:shadow-xl transition-all duration-300">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="w-8 h-8 rounded-lg bg-[#1DB954] text-white flex items-center justify-center font-bold text-sm tracking-wider shadow-sm shrink-0">
+                            <i class="fa-brands fa-spotify"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800 tracking-tight flex items-center gap-2">
+                                <span>公式Podcast（音声インタビュー）</span>
+                                <span
+                                    class="text-xs font-semibold px-2 py-0.5 bg-[#1DB954]/10 text-[#1DB954] rounded-full">Spotify公式番組</span>
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-0.5">日本物流の「知」と「経験」を次代へ。業界の第一線で活躍してきた実務者・経営者の生の声をお届けします。
+                            </p>
+                        </div>
+                    </div>
+                    <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm bg-[#1DB954] hover:bg-[#179a45] text-white font-bold px-4 py-2 rounded-full transition-colors shadow-sm shrink-0 self-start sm:self-auto">
+                        <i class="fa-brands fa-spotify"></i>
+                        <span>Spotifyで聴く</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Spotify公式 show iframe 埋め込み -->
+                <div class="w-full overflow-hidden rounded-xl bg-slate-900 border border-slate-200/80 spotify-embed-shell">
+                    <iframe src="https://open.spotify.com/embed/show/0341JHpqyArPDxQjedxTtL?utm_source=generator&theme=0"
+                        title="Spotify公式Podcast: 日本物流の「知」と「経験」を次代へ～Logistics Frontier Interviews～"
+                        class="w-full spotify-embed-frame"
+                        frameBorder="0" allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
         <!-- 下部の最新取材記事・ポッドキャスト -->
         <div class="space-y-10" data-aos="fade-up" data-aos-delay="100">
             <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-4 gap-4">
@@ -525,7 +586,7 @@
                 </a>
 
                 <!-- Spotify -->
-                <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer"
+                <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
                     @click="podcastModalOpen = false"
                     class="group flex items-center justify-between p-4 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/80 hover:border-[#1DB954] rounded-2xl transition-all duration-300">
                     <div class="flex items-center gap-4">

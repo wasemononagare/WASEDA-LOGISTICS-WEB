@@ -67,6 +67,22 @@
             border-radius: 12px;
         }
 
+        /* Custom scrollbar for podcast carousel */
+        .podcast-carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+        .podcast-carousel::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 9999px;
+        }
+        .podcast-carousel::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .podcast-carousel::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
         /* Article card hover glow */
         .article-card::before {
             content: '';
@@ -346,44 +362,242 @@
 
                 <!-- Podcast Section -->
                 <div
-                    class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden">
+                    class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden"
+                    x-data="{
+                        activePart: 1,
+                        /* ====================================================================== */
+                        /* 【管理者向け：エピソード追加・更新方法】 */
+                        /* Part 2〜6 のSpotifyエピソードURLが公開されたら、以下の episodes 配列にある */
+                        /* 各パートの id: '' に SpotifyエピソードID（例: 2KUE7hYRERb6hH6fgOYrQU）を入力し、 */
+                        /* available: true に変更するだけで自動的にプレイヤーが切り替わります。 */
+                        /* ====================================================================== */
+                        episodes: [
+                            {
+                                part: 1,
+                                id: '2KUE7hYRERb6hH6fgOYrQU',
+                                title: '渡辺景吾氏インタビュー Part1',
+                                topic: '物流との出会いとシベリア鉄道輸送',
+                                summary: '学生時代から物流会社への入社、シベリア鉄道輸送（SLB）の現場から始まったキャリアの原点',
+                                duration: '約26分',
+                                available: true
+                            },
+                            {
+                                part: 2,
+                                id: '',
+                                title: '渡辺景吾氏インタビュー Part2',
+                                topic: '海上混載輸送のパイオニアとしての挑戦',
+                                summary: '未知の市場へ飛び込み、混載ビジネスを日本で切り拓いていった初期の苦闘と手応え',
+                                duration: '順次配信',
+                                available: false
+                            },
+                            {
+                                part: 3,
+                                id: '',
+                                title: '渡辺景吾氏インタビュー Part3',
+                                topic: '独立・起業と西濃運輸との提携',
+                                summary: 'セイノーボテイナー（現セイノーロジックス）設立と、大手運送会社との合弁への軌跡',
+                                duration: '順次配信',
+                                available: false
+                            },
+                            {
+                                part: 4,
+                                id: '',
+                                title: '渡辺景吾氏インタビュー Part4',
+                                topic: '釜山ハブ構想と国際物流の最前線',
+                                summary: '日本の港湾事情への問題意識と、釜山港を活用した国際複合一貫輸送のイノベーション',
+                                duration: '順次配信',
+                                available: false
+                            },
+                            {
+                                part: 5,
+                                id: '',
+                                title: '渡辺景吾氏インタビュー Part5',
+                                topic: '現場で培った判断力と暗黙知',
+                                summary: '海外パートナーとのタフな交渉術、修羅場をくぐり抜けて培われた決断の裏側',
+                                duration: '順次配信',
+                                available: false
+                            },
+                            {
+                                part: 6,
+                                id: '',
+                                title: '渡辺景吾氏インタビュー Part6',
+                                topic: '日本の物流の課題と若い世代へ',
+                                summary: '「足の裏の面積だけの人生を送るな」物流の未来を担う若い世代へ贈る魂のメッセージ',
+                                duration: '順次配信',
+                                available: false
+                            }
+                        ],
+                        selectPart(part) {
+                            this.activePart = part;
+                            const card = document.getElementById('carousel-card-' + part);
+                            if (card) {
+                                card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                            }
+                        },
+                        scrollCarousel(direction) {
+                            const el = this.$refs.carousel;
+                            if (el) {
+                                el.scrollBy({ left: direction * 220, behavior: 'smooth' });
+                            }
+                        }
+                    }">
                     <div class="p-6">
-                        <div class="flex items-center gap-3 mb-5">
-                            <div
-                                class="w-10 h-10 bg-gradient-to-br from-[#1DB954] to-[#1ed760] rounded-xl flex items-center justify-center shadow-md">
-                                <i class="fa-brands fa-spotify text-white text-lg"></i>
+                        <!-- Header -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-slate-100 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-[#1DB954] to-[#1ed760] rounded-xl flex items-center justify-center shadow-md shrink-0">
+                                    <i class="fa-brands fa-spotify text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h2 class="text-lg font-bold text-slate-900">Podcast</h2>
+                                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1DB954]/10 text-[#1DB954] border border-[#1DB954]/30">全6回シリーズ</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-400 font-semibold">渡辺景吾氏のインタビュー音声をお聴きいただけます</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 class="text-lg font-bold text-slate-900">Podcast</h2>
-                                <p class="text-[11px] text-slate-400 font-semibold">インタビュー音声をお聴きいただけます</p>
+                            <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1DB954]/10 hover:bg-[#1DB954] text-[#1DB954] hover:text-white font-bold text-xs rounded-full transition-all duration-200 self-start sm:self-auto shrink-0 border border-[#1DB954]/20 hover:border-transparent">
+                                <i class="fa-brands fa-spotify"></i>
+                                <span>Spotify公式番組へ</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                        </div>
+
+                        <!-- 分割タブ: Part 1 〜 Part 6 セレクター -->
+                        <div class="mb-4">
+                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+                                <span><i class="fa-solid fa-list-ol mr-1 text-[#002D5B]"></i> パートを選択</span>
+                                <span class="text-[10px] font-normal text-slate-400">現在選択: Part <span class="font-bold text-slate-700" x-text="activePart"></span></span>
+                            </div>
+                            <div class="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                                <template x-for="ep in episodes" :key="ep.part">
+                                    <button type="button" @click="selectPart(ep.part)"
+                                        :class="activePart === ep.part
+                                            ? 'bg-[#1DB954] text-white shadow-sm ring-2 ring-[#1DB954]/40 font-bold scale-[1.02]'
+                                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'"
+                                        class="py-2 px-1 text-center rounded-xl transition-all duration-200 text-xs flex flex-col items-center justify-center gap-0.5 cursor-pointer">
+                                        <span class="text-[11px]" x-text="'Part ' + ep.part"></span>
+                                        <span class="text-[9px] flex items-center gap-1"
+                                            :class="activePart === ep.part ? 'text-white/90' : (ep.available ? 'text-emerald-600' : 'text-slate-400')">
+                                            <span x-show="ep.available" class="w-1.5 h-1.5 rounded-full" :class="activePart === ep.part ? 'bg-white' : 'bg-emerald-500'"></span>
+                                            <span x-text="ep.available ? '配信中' : '近日'"></span>
+                                        </span>
+                                    </button>
+                                </template>
                             </div>
                         </div>
 
-                        <!-- Spotify Embed Placeholder -->
-                        <div class="spotify-embed space-y-4">
-                            <!-- ====================================================================== -->
-                            <!-- 【管理用コメント】 -->
-                            <!-- Spotify埋め込みURLが決まったら、下の<div>ブロックを削除して、以下の形式で置き換えてください： -->
-                            <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/XXXXXXXX" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-                            <!-- ====================================================================== -->
-                            <div
-                                class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200 p-8 text-center">
-                                <div
-                                    class="w-16 h-16 bg-gradient-to-br from-[#1DB954]/10 to-[#1DB954]/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                    <i class="fa-solid fa-headphones text-2xl text-[#1DB954]"></i>
+                        <!-- アクティブプレイヤー表示エリア -->
+                        <div class="spotify-embed mb-5">
+                            <!-- 配信中エピソードの埋め込み (Part 1等) -->
+                            <template x-for="ep in episodes" :key="ep.part">
+                                <div x-show="activePart === ep.part && ep.available && ep.id" class="w-full">
+                                    <div class="rounded-xl overflow-hidden shadow-sm bg-slate-900 border border-slate-200 min-h-[152px]">
+                                        <iframe style="border-radius:12px"
+                                            :src="'https://open.spotify.com/embed/episode/' + ep.id + '?utm_source=generator&theme=0'"
+                                            width="100%" height="152" frameBorder="0" allowfullscreen=""
+                                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                            loading="lazy"
+                                            :title="ep.title">
+                                        </iframe>
+                                    </div>
+                                    <div class="mt-2.5 px-1 flex items-center justify-between text-[11px] text-slate-500">
+                                        <span class="font-semibold text-slate-700" x-text="ep.title + '：' + ep.topic"></span>
+                                        <span class="shrink-0 ml-2 text-slate-400" x-text="ep.duration"></span>
+                                    </div>
                                 </div>
-                                <h3 class="text-sm font-bold text-slate-700 mb-2">Podcast エピソード準備中</h3>
-                                <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                                    渡辺景吾さんへのインタビュー音声を<br>近日公開予定です。お楽しみに！</p>
-                                <div class="flex items-center justify-center gap-1.5">
-                                    <span class="w-2 h-2 bg-[#1DB954] rounded-full animate-pulse"></span>
-                                    <span class="w-2 h-2 bg-[#1DB954]/60 rounded-full animate-pulse"
-                                        style="animation-delay: 0.2s;"></span>
-                                    <span class="w-2 h-2 bg-[#1DB954]/30 rounded-full animate-pulse"
-                                        style="animation-delay: 0.4s;"></span>
+                            </template>
+
+                            <!-- 近日公開予定エピソードのカード (Part 2〜6等) -->
+                            <template x-for="ep in episodes" :key="ep.part">
+                                <div x-show="activePart === ep.part && (!ep.available || !ep.id)" class="w-full">
+                                    <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-xl p-5 border border-slate-700/80 shadow-md">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <div class="flex items-center gap-2">
+                                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/40" x-text="'Part ' + ep.part"></span>
+                                                <span class="text-xs text-amber-300 font-semibold flex items-center gap-1">
+                                                    <i class="fa-regular fa-clock text-[10px]"></i> 近日配信予定
+                                                </span>
+                                            </div>
+                                            <span class="text-[11px] text-slate-400" x-text="'全6回シリーズ 第' + ep.part + '部'"></span>
+                                        </div>
+                                        <h4 class="text-sm font-bold text-white mb-1.5" x-text="ep.title + '：' + ep.topic"></h4>
+                                        <p class="text-xs text-slate-300 leading-relaxed mb-4" x-text="ep.summary"></p>
+                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-3 border-t border-slate-700/60">
+                                            <span class="text-[11px] text-slate-400">配信開始時にすぐ通知を受け取る</span>
+                                            <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
+                                                class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#1DB954] hover:bg-[#1ed760] text-black font-bold text-xs transition-colors shrink-0 shadow-sm">
+                                                <i class="fa-brands fa-spotify text-sm"></i>
+                                                <span>Spotifyで番組をフォロー</span>
+                                                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- 流れる形: 水平スクロールカルーセル (Horizontal Scrollable Carousel) -->
+                        <div class="border-t border-slate-100 pt-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-1.5 h-3.5 bg-[#1DB954] rounded-full"></span>
+                                    <h3 class="text-xs font-bold text-slate-700">エピソード一覧（横スクロールで選択）</h3>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <button type="button" @click="scrollCarousel(-1)"
+                                        class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs transition-colors cursor-pointer"
+                                        title="前へ">
+                                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                                    </button>
+                                    <button type="button" @click="scrollCarousel(1)"
+                                        class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs transition-colors cursor-pointer"
+                                        title="次へ">
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </button>
                                 </div>
                             </div>
+
+                            <!-- カルーセル本体 -->
+                            <div x-ref="carousel"
+                                class="podcast-carousel flex gap-3 overflow-x-auto pb-2 snap-x scroll-smooth">
+                                <template x-for="ep in episodes" :key="ep.part">
+                                    <div :id="'carousel-card-' + ep.part"
+                                        @click="selectPart(ep.part)"
+                                        :class="activePart === ep.part
+                                            ? 'border-[#1DB954] ring-2 ring-[#1DB954]/25 bg-emerald-50/40 shadow-sm'
+                                            : 'border-slate-200 bg-slate-50/80 hover:bg-white hover:border-slate-300'"
+                                        class="w-[210px] sm:w-[230px] shrink-0 snap-start p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between group">
+                                        <div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md"
+                                                    :class="activePart === ep.part ? 'bg-[#1DB954] text-white' : 'bg-slate-200 text-slate-700'"
+                                                    x-text="'Part ' + ep.part"></span>
+                                                <span class="text-[10px] font-semibold flex items-center gap-1"
+                                                    :class="ep.available ? 'text-emerald-600' : 'text-slate-400'">
+                                                    <span x-show="ep.available" class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                                    <span x-text="ep.available ? '配信中' : '近日公開'"></span>
+                                                </span>
+                                            </div>
+                                            <h4 class="text-xs font-bold text-slate-900 group-hover:text-[#002D5B] transition-colors leading-snug mb-1 line-clamp-2"
+                                                x-text="ep.topic"></h4>
+                                            <p class="text-[10px] text-slate-500 leading-relaxed line-clamp-2"
+                                                x-text="ep.summary"></p>
+                                        </div>
+                                        <div class="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px]">
+                                            <span class="text-slate-400" x-text="ep.duration"></span>
+                                            <span class="font-bold flex items-center gap-1"
+                                                :class="activePart === ep.part ? 'text-[#1DB954]' : 'text-slate-400 group-hover:text-[#002D5B]'">
+                                                <i class="fa-solid fa-play text-[8px]" x-show="ep.available"></i>
+                                                <span x-text="activePart === ep.part ? '選択中' : '再生する'"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
