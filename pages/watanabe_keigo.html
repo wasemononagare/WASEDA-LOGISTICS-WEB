@@ -365,12 +365,11 @@
                     class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.03)] border border-slate-200 overflow-hidden"
                     x-data="{
                         activePart: 1,
-                        /* ====================================================================== */
-                        /* 【管理者向け：エピソード追加・更新方法】 */
-                        /* Part 2〜6 のSpotifyエピソードURLが公開されたら、以下の episodes 配列にある */
-                        /* 各パートの id: '' に SpotifyエピソードID（例: 2KUE7hYRERb6hH6fgOYrQU）を入力し、 */
-                        /* available: true に変更するだけで自動的にプレイヤーが切り替わります。 */
-                        /* ====================================================================== */
+                        isPlaying: false,
+                        currentTime: 0,
+                        duration: 0,
+                        playbackRate: 1.0,
+                        isLoadingRss: false,
                         episodes: [
                             {
                                 part: 1,
@@ -379,7 +378,9 @@
                                 topic: '物流との出会いとシベリア鉄道輸送',
                                 summary: '学生時代から物流会社への入社、シベリア鉄道輸送（SLB）の現場から始まったキャリアの原点',
                                 duration: '約26分',
-                                available: true
+                                available: true,
+                                audioUrl: 'https://anchor.fm/s/115b55304/podcast/play/126664312/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-2%2F7bec6be9-a216-addf-1570-28ce1bbcfabb.mp3',
+                                spotifyUrl: 'https://podcasters.spotify.com/pod/show/logistics-frontier-interv5/episodes/Part1-e3po05o'
                             },
                             {
                                 part: 2,
@@ -388,7 +389,9 @@
                                 topic: '海上混載輸送のパイオニアとしての挑戦',
                                 summary: '未知の市場へ飛び込み、混載ビジネスを日本で切り拓いていった初期の苦闘と手応え',
                                 duration: '順次配信',
-                                available: false
+                                available: false,
+                                audioUrl: '',
+                                spotifyUrl: ''
                             },
                             {
                                 part: 3,
@@ -397,7 +400,9 @@
                                 topic: '独立・起業と西濃運輸との提携',
                                 summary: 'セイノーボテイナー（現セイノーロジックス）設立と、大手運送会社との合弁への軌跡',
                                 duration: '順次配信',
-                                available: false
+                                available: false,
+                                audioUrl: '',
+                                spotifyUrl: ''
                             },
                             {
                                 part: 4,
@@ -406,7 +411,9 @@
                                 topic: '釜山ハブ構想と国際物流の最前線',
                                 summary: '日本の港湾事情への問題意識と、釜山港を活用した国際複合一貫輸送のイノベーション',
                                 duration: '順次配信',
-                                available: false
+                                available: false,
+                                audioUrl: '',
+                                spotifyUrl: ''
                             },
                             {
                                 part: 5,
@@ -415,7 +422,9 @@
                                 topic: '現場で培った判断力と暗黙知',
                                 summary: '海外パートナーとのタフな交渉術、修羅場をくぐり抜けて培われた決断の裏側',
                                 duration: '順次配信',
-                                available: false
+                                available: false,
+                                audioUrl: '',
+                                spotifyUrl: ''
                             },
                             {
                                 part: 6,
@@ -424,15 +433,135 @@
                                 topic: '日本の物流の課題と若い世代へ',
                                 summary: '「足の裏の面積だけの人生を送るな」物流の未来を担う若い世代へ贈る魂のメッセージ',
                                 duration: '順次配信',
-                                available: false
+                                available: false,
+                                audioUrl: '',
+                                spotifyUrl: ''
                             }
                         ],
-                        selectPart(part) {
-                            this.activePart = part;
-                            const card = document.getElementById('carousel-card-' + part);
-                            if (card) {
-                                card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        init() {
+                            this.fetchLatestEpisodes();
+                        },
+                        async fetchLatestEpisodes() {
+                            try {
+                                this.isLoadingRss = true;
+                                const rssUrl = 'https://anchor.fm/s/115b55304/podcast/rss';
+                                const res = await fetch(rssUrl);
+                                if (!res.ok) return;
+                                const xmlText = await res.text();
+                                const parser = new DOMParser();
+                                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                                const items = xmlDoc.querySelectorAll('item');
+
+                                items.forEach(item => {
+                                    const title = item.querySelector('title')?.textContent || '';
+                                    // 渡辺景吾氏のエピソードのみを対象にする安全フィルター（他のゲストは除外）
+                                    if (!title.includes('渡辺景吾') && !title.includes('渡辺')) return;
+
+                                    // Part番号（1〜6）を判定
+                                    const partMatch = title.match(/(?:Part|第)\s*([1-6])/i);
+                                    if (!partMatch) return;
+                                    const partNum = parseInt(partMatch[1], 10);
+
+                                    const target = this.episodes.find(e => e.part === partNum);
+                                    if (!target) return;
+
+                                    // 音声URL（enclosure）
+                                    const enclosure = item.querySelector('enclosure');
+                                    const audioUrl = enclosure ? enclosure.getAttribute('url') : '';
+                                    if (audioUrl) {
+                                        target.audioUrl = audioUrl;
+                                        target.available = true;
+                                    }
+
+                                    // 個別リンク
+                                    const link = item.querySelector('link')?.textContent?.trim();
+                                    if (link) target.spotifyUrl = link;
+
+                                    // 再生時間の整形
+                                    const durEl = item.getElementsByTagNameNS('*', 'duration')[0] || item.querySelector('duration');
+                                    if (durEl && durEl.textContent) {
+                                        const parts = durEl.textContent.trim().split(':').map(Number);
+                                        if (parts.length === 3) {
+                                            target.duration = '約' + (parts[0] * 60 + parts[1]) + '分';
+                                        } else if (parts.length === 2) {
+                                            target.duration = '約' + parts[0] + '分';
+                                        }
+                                    }
+                                });
+                            } catch (e) {
+                                console.warn('Podcast feed update notice:', e);
+                            } finally {
+                                this.isLoadingRss = false;
                             }
+                        },
+                        get currentEp() {
+                            return this.episodes.find(e => e.part === this.activePart) || this.episodes[0];
+                        },
+                        get progressPercent() {
+                            if (!this.duration || this.duration === 0) return 0;
+                            return Math.min(100, Math.max(0, (this.currentTime / this.duration) * 100));
+                        },
+                        selectPart(part) {
+                            if (this.activePart !== part) {
+                                this.activePart = part;
+                                const audio = this.$refs.audio;
+                                if (audio) {
+                                    audio.pause();
+                                    this.isPlaying = false;
+                                    this.currentTime = 0;
+                                    this.duration = 0;
+                                    if (this.currentEp.available && this.currentEp.audioUrl) {
+                                        audio.src = this.currentEp.audioUrl;
+                                        audio.load();
+                                    }
+                                }
+                                const card = document.getElementById('carousel-card-' + part);
+                                if (card) {
+                                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                                }
+                            }
+                        },
+                        togglePlay() {
+                            const audio = this.$refs.audio;
+                            if (!audio) return;
+                            if (!this.currentEp.available || !this.currentEp.audioUrl) return;
+
+                            if (this.isPlaying) {
+                                audio.pause();
+                            } else {
+                                if (!audio.src || (!audio.src.includes(encodeURIComponent(this.currentEp.audioUrl)) && audio.src !== this.currentEp.audioUrl)) {
+                                    audio.src = this.currentEp.audioUrl;
+                                    audio.load();
+                                }
+                                audio.play().catch(err => console.warn(err));
+                            }
+                        },
+                        seek(event) {
+                            const audio = this.$refs.audio;
+                            if (!audio || !this.duration) return;
+                            const rect = event.currentTarget.getBoundingClientRect();
+                            const pos = (event.clientX - rect.left) / rect.width;
+                            audio.currentTime = Math.max(0, Math.min(this.duration, pos * this.duration));
+                        },
+                        skip(seconds) {
+                            const audio = this.$refs.audio;
+                            if (!audio) return;
+                            const max = this.duration || audio.duration || 0;
+                            audio.currentTime = Math.max(0, Math.min(max, audio.currentTime + seconds));
+                        },
+                        toggleRate() {
+                            const rates = [1.0, 1.25, 1.5, 2.0];
+                            const next = (rates.indexOf(this.playbackRate) + 1) % rates.length;
+                            this.playbackRate = rates[next];
+                            if (this.$refs.audio) {
+                                this.$refs.audio.playbackRate = this.playbackRate;
+                            }
+                        },
+                        formatTime(sec) {
+                            if (!sec || isNaN(sec) || sec < 0) return '00:00';
+                            const m = Math.floor(sec / 60);
+                            const s = Math.floor(sec % 60);
+                            return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
                         },
                         scrollCarousel(direction) {
                             const el = this.$refs.carousel;
@@ -453,7 +582,7 @@
                                         <h2 class="text-lg font-bold text-slate-900">Podcast</h2>
                                         <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1DB954]/10 text-[#1DB954] border border-[#1DB954]/30">全6回シリーズ</span>
                                     </div>
-                                    <p class="text-[11px] text-slate-400 font-semibold">渡辺景吾氏のインタビュー音声をお聴きいただけます</p>
+                                    <p class="text-[11px] text-slate-400 font-semibold">渡辺景吾氏のインタビュー音声をブラウザ上で直接再生できます</p>
                                 </div>
                             </div>
                             <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
@@ -488,54 +617,126 @@
                             </div>
                         </div>
 
-                        <!-- アクティブプレイヤー表示エリア -->
-                        <div class="spotify-embed mb-5">
-                            <!-- 配信中エピソードの埋め込み (Part 1等) -->
-                            <template x-for="ep in episodes" :key="ep.part">
-                                <div x-show="activePart === ep.part && ep.available && ep.id" class="w-full">
-                                    <div class="rounded-xl overflow-hidden shadow-sm bg-slate-900 border border-slate-200 min-h-[152px]">
-                                        <iframe style="border-radius:12px"
-                                            :src="'https://open.spotify.com/embed/episode/' + ep.id + '?utm_source=generator&theme=0'"
-                                            width="100%" height="152" frameBorder="0" allowfullscreen=""
-                                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                            loading="lazy"
-                                            :title="ep.title">
-                                        </iframe>
-                                    </div>
-                                    <div class="mt-2.5 px-1 flex items-center justify-between text-[11px] text-slate-500">
-                                        <span class="font-semibold text-slate-700" x-text="ep.title + '：' + ep.topic"></span>
-                                        <span class="shrink-0 ml-2 text-slate-400" x-text="ep.duration"></span>
-                                    </div>
-                                </div>
-                            </template>
+                        <!-- 音声再生用オーディオタグ（ブラウザ標準） -->
+                        <audio x-ref="audio"
+                            :src="currentEp.audioUrl || ''"
+                            preload="metadata"
+                            @play="isPlaying = true"
+                            @pause="isPlaying = false"
+                            @ended="isPlaying = false; currentTime = 0"
+                            @timeupdate="currentTime = $event.target.currentTime"
+                            @loadedmetadata="duration = $event.target.duration"
+                            @durationchange="duration = $event.target.duration">
+                        </audio>
 
-                            <!-- 近日公開予定エピソードのカード (Part 2〜6等) -->
-                            <template x-for="ep in episodes" :key="ep.part">
-                                <div x-show="activePart === ep.part && (!ep.available || !ep.id)" class="w-full">
-                                    <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-xl p-5 border border-slate-700/80 shadow-md">
-                                        <div class="flex items-center justify-between mb-3">
-                                            <div class="flex items-center gap-2">
-                                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/40" x-text="'Part ' + ep.part"></span>
-                                                <span class="text-xs text-amber-300 font-semibold flex items-center gap-1">
-                                                    <i class="fa-regular fa-clock text-[10px]"></i> 近日配信予定
-                                                </span>
-                                            </div>
-                                            <span class="text-[11px] text-slate-400" x-text="'全6回シリーズ 第' + ep.part + '部'"></span>
+                        <!-- アクティブプレイヤー表示エリア -->
+                        <div class="mb-5">
+                            <!-- 配信中エピソードのカスタム高音質プレイヤー -->
+                            <div x-show="currentEp.available && currentEp.audioUrl" class="w-full">
+                                <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-xl p-5 border border-slate-700/80 shadow-lg relative overflow-hidden">
+                                    <!-- 背景のSpotifyグリーンの微細な発光アクセント -->
+                                    <div class="absolute -top-16 -right-16 w-40 h-40 bg-[#1DB954]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                                    <!-- 上部ヘッダー -->
+                                    <div class="flex items-center justify-between mb-3 relative z-10">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/40" x-text="'Part ' + currentEp.part"></span>
+                                            <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                                                <span class="w-2 h-2 rounded-full bg-emerald-400" :class="isPlaying ? 'animate-ping' : ''"></span>
+                                                <span x-text="isPlaying ? '再生中' : 'フル音声 再生可能'"></span>
+                                            </span>
                                         </div>
-                                        <h4 class="text-sm font-bold text-white mb-1.5" x-text="ep.title + '：' + ep.topic"></h4>
-                                        <p class="text-xs text-slate-300 leading-relaxed mb-4" x-text="ep.summary"></p>
-                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-3 border-t border-slate-700/60">
-                                            <span class="text-[11px] text-slate-400">配信開始時にすぐ通知を受け取る</span>
-                                            <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
-                                                class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#1DB954] hover:bg-[#1ed760] text-black font-bold text-xs transition-colors shrink-0 shadow-sm">
-                                                <i class="fa-brands fa-spotify text-sm"></i>
-                                                <span>Spotifyで番組をフォロー</span>
-                                                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                                            </a>
+                                        <span class="text-[11px] text-slate-400" x-text="'全6回シリーズ 第' + currentEp.part + '部'"></span>
+                                    </div>
+
+                                    <!-- エピソード見出し -->
+                                    <div class="mb-3 relative z-10">
+                                        <h4 class="text-sm sm:text-base font-bold text-white mb-1 leading-snug" x-text="currentEp.title + '：' + currentEp.topic"></h4>
+                                        <p class="text-xs text-slate-300 leading-relaxed line-clamp-2" x-text="currentEp.summary"></p>
+                                    </div>
+
+                                    <!-- シークバー（プログレスバー） -->
+                                    <div class="mb-3 relative z-10">
+                                        <div class="relative w-full h-2.5 bg-slate-700/80 hover:bg-slate-700 rounded-full cursor-pointer transition-colors"
+                                             @click="seek($event)">
+                                            <div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#1DB954] to-[#1ed760] rounded-full transition-all duration-75"
+                                                 :style="'width: ' + progressPercent + '%'"></div>
+                                            <!-- スライダーノブ -->
+                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-md pointer-events-none"
+                                                 :style="'left: ' + progressPercent + '%'"></div>
+                                        </div>
+                                        <div class="flex justify-between items-center text-[11px] text-slate-400 mt-1 font-mono">
+                                            <span x-text="formatTime(currentTime)"></span>
+                                            <span x-text="duration ? formatTime(duration) : currentEp.duration"></span>
                                         </div>
                                     </div>
+
+                                    <!-- コントローラー -->
+                                    <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-700/60 relative z-10">
+                                        <!-- 再生速度ボタン -->
+                                        <button type="button" @click="toggleRate()"
+                                            class="px-2.5 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-[11px] font-bold text-slate-300 border border-slate-600 transition-colors cursor-pointer"
+                                            title="再生速度を変更">
+                                            <span x-text="playbackRate + 'x'"></span>
+                                        </button>
+
+                                        <!-- メイン操作: 10秒戻し・再生/停止・10秒送り -->
+                                        <div class="flex items-center gap-3">
+                                            <button type="button" @click="skip(-10)"
+                                                class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-colors text-xs cursor-pointer hover:text-white"
+                                                title="10秒戻る">
+                                                <i class="fa-solid fa-rotate-left"></i>
+                                            </button>
+                                            <button type="button" @click="togglePlay()"
+                                                class="w-11 h-11 rounded-full bg-[#1DB954] hover:bg-[#1ed760] text-black flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                                                :title="isPlaying ? '一時停止' : '再生'">
+                                                <i class="fa-solid text-sm" :class="isPlaying ? 'fa-pause' : 'fa-play ml-0.5'"></i>
+                                            </button>
+                                            <button type="button" @click="skip(10)"
+                                                class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-colors text-xs cursor-pointer hover:text-white"
+                                                title="10秒進む">
+                                                <i class="fa-solid fa-rotate-right"></i>
+                                            </button>
+                                        </div>
+
+                                        <!-- Spotifyで開くボタン -->
+                                        <a :href="currentEp.spotifyUrl || 'https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL'"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1DB954]/10 hover:bg-[#1DB954] text-[#1DB954] hover:text-black border border-[#1DB954]/30 hover:border-transparent font-bold text-xs transition-colors shrink-0"
+                                            title="Spotifyアプリで聴く">
+                                            <i class="fa-brands fa-spotify text-sm"></i>
+                                            <span class="hidden sm:inline">Spotifyで開く</span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </template>
+                            </div>
+
+                            <!-- 近日公開予定エピソードのカード -->
+                            <div x-show="!currentEp.available || !currentEp.audioUrl" class="w-full">
+                                <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-xl p-5 border border-slate-700/80 shadow-md">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#1DB954]/20 text-[#1DB954] border border-[#1DB954]/40" x-text="'Part ' + currentEp.part"></span>
+                                            <span class="text-xs text-amber-300 font-semibold flex items-center gap-1">
+                                                <i class="fa-regular fa-clock text-[10px]"></i> 近日配信予定
+                                            </span>
+                                        </div>
+                                        <span class="text-[11px] text-slate-400" x-text="'全6回シリーズ 第' + currentEp.part + '部'"></span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-white mb-1.5" x-text="currentEp.title + '：' + currentEp.topic"></h4>
+                                    <p class="text-xs text-slate-300 leading-relaxed mb-4" x-text="currentEp.summary"></p>
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-3 border-t border-slate-700/60">
+                                        <span class="text-[11px] text-slate-400">Spotifyで配信されると自動的にここで再生可能になります</span>
+                                        <a href="https://open.spotify.com/show/0341JHpqyArPDxQjedxTtL" target="_blank" rel="noopener noreferrer"
+                                            class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#1DB954] hover:bg-[#1ed760] text-black font-bold text-xs transition-colors shrink-0 shadow-sm">
+                                            <i class="fa-brands fa-spotify text-sm"></i>
+                                            <span>Spotifyで番組をフォロー</span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- 流れる形: 水平スクロールカルーセル (Horizontal Scrollable Carousel) -->
@@ -589,8 +790,8 @@
                                             <span class="text-slate-400" x-text="ep.duration"></span>
                                             <span class="font-bold flex items-center gap-1"
                                                 :class="activePart === ep.part ? 'text-[#1DB954]' : 'text-slate-400 group-hover:text-[#002D5B]'">
-                                                <i class="fa-solid fa-play text-[8px]" x-show="ep.available"></i>
-                                                <span x-text="activePart === ep.part ? '選択中' : '再生する'"></span>
+                                                <i class="fa-solid text-[8px]" :class="(ep.available && isPlaying && activePart === ep.part) ? 'fa-pause' : 'fa-play'" x-show="ep.available"></i>
+                                                <span x-text="(ep.available && isPlaying && activePart === ep.part) ? '再生中' : (activePart === ep.part ? '選択中' : '再生する')"></span>
                                             </span>
                                         </div>
                                     </div>
